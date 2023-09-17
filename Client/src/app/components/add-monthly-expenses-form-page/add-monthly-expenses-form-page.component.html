@@ -1,0 +1,73 @@
+<p>add expenses for {{month}}</p>
+<div class="month-dropdown">
+  <select  [(ngModel)]="month">
+    <option *ngFor="let month of monthsOptions" [value]="month">{{ month }}</option>
+  </select>
+</div>
+
+
+<form [formGroup]="expenseForm" (ngSubmit)="submit()">
+
+  <select formControlName="categoryId">
+      <option [ngValue]="null" disabled>Select Category</option>
+      <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option>
+    </select>
+  <div>
+  <label>amount</label>
+  <input formControlName="amount" type="number">
+  </div>
+  <div>
+    <label>year</label>
+    <input formControlName="year" type="number">
+  </div>
+    <button type="submit">Submit</button>
+
+
+</form>
+
+
+
+
+
+
+
+
+
+<!--<form class="formContainer" [formGroup]="expenseForm">-->
+<!--  <div class="subForm">-->
+<!--    <div>-->
+<!--      <label for="category">categoryName</label>-->
+<!--      <select  class="form-select" formControlName="selectedCategory" >-->
+<!--        <option id="category" *ngFor="let categoryName of categoriesNames" [value]="categoriesNames[0]">-->
+<!--          {{ categoryName }}-->
+<!--        </option>-->
+<!--      </select>-->
+<!--      <span class="errorMsg" *ngIf="expenseForm.get('category')?.status=='INVALID' &&  expenseForm.get('category')?.touched">-->
+<!--                Please choose a categoryName-->
+<!--            </span>-->
+<!--    </div>-->
+
+<!--    <div>-->
+<!--      <label for="amount">amount</label>-->
+<!--      <input type="number" id="amount" formControlName="amount"-->
+<!--             class="form-control">-->
+<!--      <span class="errorMsg" *ngIf="expenseForm.get('amount')?.status=='INVALID'  &&  expenseForm.get('amount')?.touched">-->
+<!--                Please enter a valid amount-->
+<!--            </span>-->
+<!--    </div>-->
+
+<!--    <div>-->
+<!--      <label for="year">year</label>-->
+<!--      <input type="number" id="year" formControlName="year"-->
+<!--             class="form-control">-->
+<!--      <span class="errorMsg" *ngIf="expenseForm.get('year')?.status=='INVALID'  &&  expenseForm.get('year')?.touched">-->
+<!--                Please enter a valid year-->
+<!--            </span>-->
+<!--    </div>-->
+
+<!--  </div>-->
+
+
+
+<!--  <button class="btn btn-primary" [disabled]="!expenseForm.valid" (click)="onAddClicked()">Add expense</button>-->
+<!--</form>-->

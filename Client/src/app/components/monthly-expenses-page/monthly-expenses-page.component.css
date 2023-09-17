@@ -1,4 +1,4 @@
-.expense-form {
+.expenses-container {
   margin: 20px;
   padding: 20px;
   border: 1px solid #ccc;
@@ -6,22 +6,17 @@
   font-family: sans-serif;
 }
 
-.expense-form label, .expense-form input, .expense-form select {
-  display: block;
-  margin-bottom: 10px;
+.monthly-expenses-title-container {
+  display: flex;
+  justify-content: center;
+}
+.monthly-expenses-title{
+  padding: 10px;
+  margin: 5px;
 }
 
-.expense-form button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  cursor: pointer;
-}
-/* Hide increment and decrement arrows */
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  appearance: none;
-  margin: 0;
+
+.month-dropdown{
+  padding: 10px;
+  margin: 5px;
 }

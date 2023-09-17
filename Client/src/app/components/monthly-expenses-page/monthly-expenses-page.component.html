@@ -1,22 +1,17 @@
-<div class="expense-form">
-  <label for="category">Category:</label>
-  <select id="category" [(ngModel)]="selectedCategory">
-    <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
-  </select>
-  <div>
-    <label for="amount">Amount:</label>
-    <input type="number" id="amount" [(ngModel)]="expenseAmount">
-  </div>
-  <div>
-    <button (click)="onAddExpense()">Add Expense</button>
-  </div>
-  <div class="expense-list">
-    <div *ngFor="let category of categories" class="category-item">
-      <p>{{ category }} Total: {{ getCategoryAmount(category) | currency:'ILS' }}</p>
+<div class="expenses-container">
+  <div class="monthly-expenses-title-container">
+    <div class="monthly-expenses-title">{{selectedMonth}} Expenses</div>
+    <div class="month-dropdown">
+      <select  [(ngModel)]="selectedMonth" (change)="onMonthClicked()">
+      <option *ngFor="let month of monthsOptions" [value]="month">{{ month }}</option>
+    </select>
     </div>
+
   </div>
-  <div>
-    <button (click)="onSubmit()">Save</button>
+
+
+  <p *ngIf="showSpinner">please wait</p>
+  <div *ngFor="let category of categoriesNames">
+    <p>{{ category }}: {{ expensesByCategories[category] | currency:'ILS' }}</p>
   </div>
 </div>
-

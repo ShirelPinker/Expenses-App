@@ -1,0 +1,23 @@
+import {Injectable} from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+import {delay, Observable} from "rxjs";
+import {ExpenseItem} from "../models/ExpenseItem";
+import {NewExpenseItem} from "../models/NewExpenseItem";
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ExpensesService {
+  constructor(private http: HttpClient) { }
+
+
+  getExpensesByMonth(month:string):Observable<ExpenseItem[]> {
+    return this.http.get<ExpenseItem[]>(`http://localhost:3001/expenses/?month=${month}`).pipe(delay(3000))
+  }
+
+  addExpense(newExpense:NewExpenseItem):Observable<void>{
+    return this.http.post<void>(`http://localhost:3001/expenses/`, newExpense).pipe(delay(3000))
+
+}
+}
