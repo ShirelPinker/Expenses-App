@@ -3,7 +3,7 @@ import {CategoriesExpenses} from "../../models/CategoriesExpenses";
 import {ExpensesService} from "../../services/expenses.service";
 import {Observable} from "rxjs";
 import {ExpenseItem} from "../../models/ExpenseItem";
-import {Month} from "../../models/MonthsEnum";
+import {Months} from "../../models/MonthsEnum";
 import {CategoriesService} from "../../services/categories.service";
 import {Category} from "../../models/Category";
 
@@ -19,7 +19,7 @@ export class MonthlyExpensesPageComponent implements OnInit {
   expensesByCategories: CategoriesExpenses = {};
   showSpinner: boolean = true;
   selectedMonth: string = ''
-  monthsOptions: Month[] = [];
+  monthsOptions: Months[] = [];
   categoriesNames : string[]=[]
   constructor(private expensesService: ExpensesService, private categoriesService: CategoriesService) {
   }
@@ -40,7 +40,7 @@ export class MonthlyExpensesPageComponent implements OnInit {
 
       })
     this.selectedMonth = this.lastMonth
-    this.monthsOptions = Object.values(Month);
+    this.monthsOptions = Object.values(Months);
 
   }
 
