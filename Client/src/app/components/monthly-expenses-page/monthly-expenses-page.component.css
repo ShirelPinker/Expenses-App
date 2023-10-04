@@ -1,22 +1,96 @@
-.expenses-container {
-  margin: 20px;
+/*.expenses-container {*/
+/*  margin: 20px;*/
+/*  padding: 20px;*/
+/*  border: 1px solid #ccc;*/
+/*  background-color: #f9f9f9;*/
+/*  font-family: sans-serif;*/
+/*}*/
+
+/*.monthly-expenses-title-container {*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*}*/
+/*.monthly-expenses-title{*/
+/*  padding: 10px;*/
+/*  margin: 5px;*/
+/*}*/
+
+
+/*.month-dropdown{*/
+/*  padding: 10px;*/
+/*  margin: 5px;*/
+/*}*/
+/* CSS Design for Expenses Component */
+
+.expenses-page-container {
   padding: 20px;
   border: 1px solid #ccc;
-  background-color: #f9f9f9;
   font-family: sans-serif;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 1000px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 8px;
+  background-color: #eaeeff;
+  max-height: 1000px;
 }
 
+
+/* Title and Month Dropdown Container */
 .monthly-expenses-title-container {
   display: flex;
-  justify-content: center;
-}
-.monthly-expenses-title{
-  padding: 10px;
-  margin: 5px;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
+.monthly-expenses-title {
+  font-size: 24px;
+  margin: 10px 0;
+  color: #947da9;
 
-.month-dropdown{
+}
+
+.month-dropdown select {
   padding: 10px;
-  margin: 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+  width: 100%;
+  max-width: 200px; /* Adjust as needed */
+}
+
+p {
+  font-size: 18px;
+  color: #666;
+  margin-top: 20px;
+}
+.all-expenses-container{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.expense-container{
+  display: flex;
+  justify-content: space-between;
+  width: 27%;
+  margin: 10px 30px;
+}
+
+.category-name{
+  color: #7749a1;
+
+}
+.category-amount{
+
+}
+
+/* Category Expense Text Styles */
+div p {
+  font-size: 16px;
+  color: #333;
 }

@@ -13,11 +13,14 @@ export class ExpensesService {
 
 
   getExpensesByMonth(month:string):Observable<ExpenseItem[]> {
-    return this.http.get<ExpenseItem[]>(`http://localhost:3001/expenses/?month=${month}`).pipe(delay(3000))
+    return this.http.get<ExpenseItem[]>(`http://localhost:3001/expenses/?month=${month}`).pipe(delay(1000))
+  }
+  getExpensesByYear(year:number):Observable<ExpenseItem[]> {
+    return this.http.get<ExpenseItem[]>(`http://localhost:3001/expenses/?year=${year}`).pipe(delay(1000))
   }
 
   addExpense(newExpense:NewExpenseItem):Observable<void>{
-    return this.http.post<void>(`http://localhost:3001/expenses/`, newExpense).pipe(delay(3000))
+    return this.http.post<void>(`http://localhost:3001/expenses/`, newExpense).pipe(delay(1000))
 
 }
 }

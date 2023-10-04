@@ -5,9 +5,17 @@ const router = express.Router();
 
 router.get("/", async (request, response, next) => {
   const month = request.query.month;
-
+  const year = request.query.year;
+  if (!year && !month) {
+    response.status(400).send('Bad Request: Your request is invalid')
+  }
+  let expenses;
   try {
-    const expenses = await expensesLogic.getExpensesByMonth(month);
+    if (year) {
+      expenses = await expensesLogic.getExpensesByYear(year);
+    } else {
+      expenses = await expensesLogic.getExpensesByMonth(month);
+    }
     response.json(expenses);
   } catch (e) {
     next(e)

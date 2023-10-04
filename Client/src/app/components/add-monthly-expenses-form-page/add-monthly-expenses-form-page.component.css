@@ -1,0 +1,82 @@
+.form-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #eaeeff;
+  font-family: sans-serif;
+  max-width: 400px;
+  margin: 30px auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-title {
+  font-size: 24px;
+  margin:0  auto 20px auto;
+  width: 84%;
+  color: #947da9;
+}
+
+.form-fields-container {
+  width: 100%;
+  margin-top: 38px ;
+}
+
+.expense-field-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+label {
+  font-size: 16px;
+  margin-bottom: 6px;
+  color: #7749a1;
+
+}
+
+.input-field {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background: #ffffffa1;
+}
+
+select.input-field {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" height="24" width="24" xmlns="http://www.w3.org/2000/svg"><polygon points="0,0 24,0 12,24"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 16px;
+  cursor: pointer;
+}
+
+
+.submit-btn {
+  display: block;
+  background-color: #007bff;
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: auto;
+}
+
+.submit-btn:hover {
+  background-color: #0056b3;
+}
+
+p {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 20px;
+  color: #666;
+}

@@ -1,26 +1,45 @@
-<p *ngIf="!(categories$ | async)">please wait</p>
+<div class="form-page-container">
 
-<form *ngIf="(categories$ | async) as categories" [formGroup]="expenseForm" (ngSubmit)="submit()">
+    <p *ngIf="!(categories$ | async)">Please wait</p>
+    <fa-icon *ngIf="!(categories$ | async)" [icon]="faSpinner" class="fa-solid fa-spinner fa-spin-pulse"></fa-icon >
 
-  <div class="month-dropdown">
-    <select formControlName="month">
-      <option *ngFor="let month of Object.keys(Months)" [ngValue]="month">{{ month }}</option>
-    </select>
-  </div>
+  <form *ngIf="(categories$ | async) as categories" [formGroup]="expenseForm" (ngSubmit)="submit()">
+    <div class="form-title">Add expenses for {{expenseForm.get('month')!.value}}</div>
 
-  <select formControlName="categoryId">
-    <option [ngValue]="null" disabled>Select Category</option>
-    <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option>
-  </select>
-  <div>
-    <label>amount</label>
-    <input formControlName="amount" type="number">
-  </div>
-  <div>
-    <label>year</label>
-    <input formControlName="year" type="number">
-  </div>
-  <button type="submit">Submit</button>
+    <div class="form-fields-container">
+
+      <div class="month-dropdown expense-field-container">
+        <label>Month</label>
+        <select class="input-field" formControlName="month">
+          <option *ngFor="let month of Object.keys(Months)" [ngValue]="month">{{ month }}</option>
+        </select>
+      </div>
+
+      <div class="expense-field-container">
+        <label>Category</label>
+        <select class="input-field" formControlName="categoryId">
+          <option [ngValue]="null" disabled>Select Category</option>
+          <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option>
+        </select>
+      </div>
+
+      <div class="expense-field-container">
+        <label>Amount</label>
+        <input class="input-field" formControlName="amount" type="number">
+      </div>
+
+      <div class="expense-field-container">
+        <label>Year</label>
+        <input class="input-field" formControlName="year" type="number">
+      </div>
+
+    </div>
 
 
-</form>
+    <button class="submit-btn" type="submit">Submit</button>
+
+
+  </form>
+
+
+</div>

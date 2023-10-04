@@ -1,17 +1,19 @@
-<div class="expenses-container">
+<div class="expenses-page-container">
   <div class="monthly-expenses-title-container">
     <div class="monthly-expenses-title">{{selectedMonth}} Expenses</div>
     <div class="month-dropdown">
       <select  [(ngModel)]="selectedMonth" (change)="onMonthClicked()">
-      <option *ngFor="let month of monthsOptions" [value]="month">{{ month }}</option>
-    </select>
+        <option *ngFor="let month of monthsOptions" [value]="month">{{ month }}</option>
+      </select>
     </div>
 
   </div>
-
-
-  <p *ngIf="showSpinner">please wait</p>
-  <div *ngFor="let category of categoriesNames">
-    <p>{{ category }}: {{ expensesByCategories[category] | currency:'ILS' }}</p>
+  <fa-icon *ngIf="showSpinner" [icon]="faSpinner" class="fa-solid fa-spinner fa-spin-pulse"></fa-icon >
+  <div *ngIf="!showSpinner" class="all-expenses-container">
+    <div class="expense-container" *ngFor="let category of categoriesNames">
+      <div class="category-name">{{ category }}:</div>
+      <div class="category-amount">{{ expensesByCategories[category] | currency:'ILS' }}</div>
+    </div>
   </div>
+
 </div>

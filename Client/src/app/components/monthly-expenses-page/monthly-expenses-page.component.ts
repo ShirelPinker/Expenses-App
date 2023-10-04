@@ -6,6 +6,7 @@ import {ExpenseItem} from "../../models/ExpenseItem";
 import {Months} from "../../models/MonthsEnum";
 import {CategoriesService} from "../../services/categories.service";
 import {Category} from "../../models/Category";
+import {faSpinner} from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -15,23 +16,23 @@ import {Category} from "../../models/Category";
 })
 export class MonthlyExpensesPageComponent implements OnInit {
   monthExpensesFromDB: ExpenseItem[] = [];
-  lastMonth: string = '';
+  lastMonth: string = Object.keys(Months)[new Date().getMonth() - 1];
   expensesByCategories: CategoriesExpenses = {};
   showSpinner: boolean = true;
   selectedMonth: string = ''
   monthsOptions: Months[] = [];
-  categoriesNames : string[]=[]
+  categoriesNames: string[] = [];
+  faSpinner = faSpinner;
+
   constructor(private expensesService: ExpensesService, private categoriesService: CategoriesService) {
   }
 
   ngOnInit(): void {
-    this.lastMonth = this.getLastMonthAsString()
-    this.categoriesService.getCategories().subscribe((categoriesList:Category[]) => {
+    this.categoriesService.getCategories().subscribe((categoriesList: Category[]) => {
       for (const category of categoriesList) {
         this.categoriesNames.push(category.name);
       }
     })
-
     this.expensesService.getExpensesByMonth(this.lastMonth)
       .subscribe((expensesData: ExpenseItem[]) => {
         this.monthExpensesFromDB = expensesData
@@ -41,7 +42,6 @@ export class MonthlyExpensesPageComponent implements OnInit {
       })
     this.selectedMonth = this.lastMonth
     this.monthsOptions = Object.values(Months);
-
   }
 
   initializeExpensesByCategories() {
@@ -53,29 +53,14 @@ export class MonthlyExpensesPageComponent implements OnInit {
     }
   }
 
-  getLastMonthAsString() {
-    const today = new Date();
-    const lastMonth = new Date(today);
-    lastMonth.setMonth(today.getMonth() - 1);
-
-    const monthNames = [
-      'January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December'
-    ];
-
-    return monthNames[lastMonth.getMonth()];
-  }
-
   onMonthClicked() {
     this.showSpinner = true;
     this.expensesByCategories = {};
-
     this.expensesService.getExpensesByMonth(this.selectedMonth)
       .subscribe((expensesData: ExpenseItem[]) => {
         this.monthExpensesFromDB = expensesData
         this.showSpinner = false;
         this.initializeExpensesByCategories()
-
       })
   }
 

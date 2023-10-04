@@ -5,6 +5,7 @@ import {Months} from "../../models/MonthsEnum";
 import {Category} from "../../models/Category";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Observable} from "rxjs";
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-add-monthly-expenses-form-page',
@@ -15,6 +16,7 @@ export class AddMonthlyExpensesFormPageComponent implements OnInit {
   Months = Months;
   categories$: Observable<Category[]>
   expenseForm: FormGroup;
+  faSpinner = faSpinner;
 
   constructor(private expensesService: ExpensesService, private categoriesService: CategoriesService, private formBuilder: FormBuilder) {
     this.expenseForm = this.formBuilder.group({});
