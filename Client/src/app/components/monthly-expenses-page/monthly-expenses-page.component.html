@@ -19,9 +19,9 @@
   <fa-icon *ngIf="showSpinner" [icon]="faSpinner" class="fa-solid fa-spinner fa-spin-pulse"></fa-icon>
   <div *ngIf="!showSpinner" class="all-expenses-container">
     <div class="expense-container" *ngFor="let category of categoriesNames">
-      <div class="category-name" (click)="onCategoryClicked(category)" >{{ category }}:</div>
+      <div class="category-name" (click)="onCategoryClicked(category)">{{ category }}:</div>
       <div class="category-amount">{{ expensesByCategories[category] | currency:'ILS' }}</div>
     </div>
   </div>
-
+  <div>Total: {{total}}</div>
 </div>

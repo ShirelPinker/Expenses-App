@@ -17,7 +17,7 @@
 
       <div class="expense-field-container">
         <label>Category</label>
-        <select class="input-field" formControlName="categoryId">
+        <select id="categories-dropdown" class="input-field" formControlName="categoryId">
           <option [ngValue]="null" disabled>Select Category</option>
           <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option>
         </select>

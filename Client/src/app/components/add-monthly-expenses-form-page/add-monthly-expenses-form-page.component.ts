@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import {ExpensesService} from "../../services/expenses.service";
 import {CategoriesService} from "../../services/categories.service";
 import {Months} from "../../models/MonthsEnum";
@@ -18,14 +18,18 @@ export class AddMonthlyExpensesFormPageComponent implements OnInit {
   expenseForm: FormGroup;
   faSpinner = faSpinner;
 
-  constructor(private expensesService: ExpensesService, private categoriesService: CategoriesService, private formBuilder: FormBuilder) {
+  constructor(
+    private expensesService: ExpensesService,
+    private categoriesService: CategoriesService,
+    private formBuilder: FormBuilder,
+    private elementRef: ElementRef
+  ) {
     this.expenseForm = this.formBuilder.group({});
     this.categories$ = this.categoriesService.getCategories()
   }
 
   ngOnInit(): void {
     this.setForm()
-    // this.expenseForm.valueChanges.subscribe(form => console.log(form))
   }
 
   setForm() {
@@ -38,7 +42,15 @@ export class AddMonthlyExpensesFormPageComponent implements OnInit {
   }
 
   submit() {
-    this.expensesService.addExpense(this.expenseForm.value).subscribe(() => this.setForm())
+    this.expensesService.addExpense(this.expenseForm.value).subscribe(() => {
+      this.setForm()
+      this.focusOnCategories();
+    })
+  }
+
+  focusOnCategories() {
+    const categoriesDropdown = this.elementRef.nativeElement.querySelector('#categories-dropdown');
+    categoriesDropdown.focus()
   }
 
   protected readonly Object = Object;

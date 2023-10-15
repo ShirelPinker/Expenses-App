@@ -25,6 +25,7 @@ export class MonthlyExpensesPageComponent implements OnInit {
   categoriesNames: string[] = [];
   faSpinner = faSpinner;
   expensesDateForm: FormGroup;
+  total: number = 0;
 
   constructor(private dialog: MatDialog, private expensesService: ExpensesService, private categoriesService: CategoriesService, private formBuilder: FormBuilder) {
     this.expensesDateForm = this.formBuilder.group({});
@@ -59,7 +60,7 @@ export class MonthlyExpensesPageComponent implements OnInit {
         this.monthExpensesFromDB = expensesData
         this.showSpinner = false;
         this.initializeExpensesByCategories()
-
+        this.total = this.calculateMonthlyExpensesSum()
       })
   }
 
@@ -77,6 +78,14 @@ export class MonthlyExpensesPageComponent implements OnInit {
     for (const expense of this.monthExpensesFromDB) {
       this.expensesByCategories[expense.categoryName] += expense.amount
     }
+  }
+
+  calculateMonthlyExpensesSum(){
+    let sum = 0;
+    for (const expense of this.monthExpensesFromDB){
+      sum += expense.amount
+    }
+    return sum;
   }
 
   onCategoryClicked(category: string) {
