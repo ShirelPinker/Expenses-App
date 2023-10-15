@@ -1,17 +1,25 @@
 <div class="expenses-page-container">
   <div class="monthly-expenses-title-container">
-    <div class="monthly-expenses-title">{{selectedMonth}} Expenses</div>
-    <div class="month-dropdown">
-      <select  [(ngModel)]="selectedMonth" (change)="onMonthClicked()">
-        <option *ngFor="let month of monthsOptions" [value]="month">{{ month }}</option>
-      </select>
-    </div>
+    <div class="monthly-expenses-title">{{expensesDateForm.get('month')!.value}} Expenses</div>
+
+    <form class="form-container" [formGroup]="expensesDateForm">
+      <div class="month-dropdown">
+        <select class="input-field" formControlName="month">
+          <option *ngFor="let month of Object.keys(Months)" [ngValue]="month">{{ month }}</option>
+        </select>
+      </div>
+      <div class="year-field-container">
+        <label>Year</label>
+        <input class="input-field year-input-field" formControlName="year" type="number">
+      </div>
+    </form>
 
   </div>
-  <fa-icon *ngIf="showSpinner" [icon]="faSpinner" class="fa-solid fa-spinner fa-spin-pulse"></fa-icon >
+
+  <fa-icon *ngIf="showSpinner" [icon]="faSpinner" class="fa-solid fa-spinner fa-spin-pulse"></fa-icon>
   <div *ngIf="!showSpinner" class="all-expenses-container">
     <div class="expense-container" *ngFor="let category of categoriesNames">
-      <div class="category-name">{{ category }}:</div>
+      <div class="category-name" (click)="onCategoryClicked(category)" >{{ category }}:</div>
       <div class="category-amount">{{ expensesByCategories[category] | currency:'ILS' }}</div>
     </div>
   </div>

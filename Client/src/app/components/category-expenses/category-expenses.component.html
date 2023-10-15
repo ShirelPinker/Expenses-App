@@ -1,0 +1,10 @@
+  <mat-dialog-content class="mat-typography category-list-container">
+
+  <fa-icon *ngIf="showSpinner" [icon]="faSpinner" class="fa-solid fa-spinner fa-spin-pulse"></fa-icon>
+  <div *ngIf="!showSpinner" class="all-expenses-container">
+    <div>{{data.categoryName}}</div>
+    <div class="expense-container" *ngFor="let expense of categoryExpenses">
+      <div class="category-amount">{{ expense.amount | currency:'ILS' }}</div>
+    </div>
+  </div>
+</mat-dialog-content>

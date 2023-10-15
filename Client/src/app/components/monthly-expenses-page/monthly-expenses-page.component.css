@@ -1,26 +1,9 @@
-/*.expenses-container {*/
-/*  margin: 20px;*/
-/*  padding: 20px;*/
-/*  border: 1px solid #ccc;*/
-/*  background-color: #f9f9f9;*/
-/*  font-family: sans-serif;*/
-/*}*/
+.form-container{
+  display: flex;
+  justify-content: space-between;
+  width: 96%;
 
-/*.monthly-expenses-title-container {*/
-/*  display: flex;*/
-/*  justify-content: center;*/
-/*}*/
-/*.monthly-expenses-title{*/
-/*  padding: 10px;*/
-/*  margin: 5px;*/
-/*}*/
-
-
-/*.month-dropdown{*/
-/*  padding: 10px;*/
-/*  margin: 5px;*/
-/*}*/
-/* CSS Design for Expenses Component */
+}
 
 .expenses-page-container {
   padding: 20px;
@@ -37,13 +20,12 @@
   max-height: 1000px;
 }
 
-
-/* Title and Month Dropdown Container */
 .monthly-expenses-title-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 20px;
+  width: 100%;
 }
 
 .monthly-expenses-title {
@@ -54,14 +36,17 @@
 }
 
 .month-dropdown select {
-  padding: 10px;
+  padding: 5px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
   background-color: #fff;
   cursor: pointer;
-  width: 100%;
-  max-width: 200px; /* Adjust as needed */
+}
+
+.year-input-field{
+  width: 45px;
+  margin-left: 5px;
 }
 
 p {
@@ -83,13 +68,10 @@ p {
 
 .category-name{
   color: #7749a1;
-
-}
-.category-amount{
-
+  cursor: pointer;
 }
 
-/* Category Expense Text Styles */
+
 div p {
   font-size: 16px;
   color: #333;

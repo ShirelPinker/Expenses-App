@@ -1,12 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {CategoriesExpenses} from "../../models/CategoriesExpenses";
 import {ExpensesService} from "../../services/expenses.service";
-import {Observable} from "rxjs";
+import {debounceTime, filter, Observable, switchMap, tap} from "rxjs";
 import {ExpenseItem} from "../../models/ExpenseItem";
 import {Months} from "../../models/MonthsEnum";
 import {CategoriesService} from "../../services/categories.service";
 import {Category} from "../../models/Category";
 import {faSpinner} from '@fortawesome/free-solid-svg-icons';
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {MatDialog} from '@angular/material/dialog';
+import {CategoryExpensesComponent} from "../category-expenses/category-expenses.component";
 
 
 @Component({
@@ -16,32 +19,55 @@ import {faSpinner} from '@fortawesome/free-solid-svg-icons';
 })
 export class MonthlyExpensesPageComponent implements OnInit {
   monthExpensesFromDB: ExpenseItem[] = [];
-  lastMonth: string = Object.keys(Months)[new Date().getMonth() - 1];
   expensesByCategories: CategoriesExpenses = {};
   showSpinner: boolean = true;
-  selectedMonth: string = ''
-  monthsOptions: Months[] = [];
+  Months = Months;
   categoriesNames: string[] = [];
   faSpinner = faSpinner;
+  expensesDateForm: FormGroup;
 
-  constructor(private expensesService: ExpensesService, private categoriesService: CategoriesService) {
+  constructor(private dialog: MatDialog, private expensesService: ExpensesService, private categoriesService: CategoriesService, private formBuilder: FormBuilder) {
+    this.expensesDateForm = this.formBuilder.group({});
   }
 
   ngOnInit(): void {
+    this.setForm()
+    const combinedFormValues$ = this.expensesDateForm.valueChanges;
+    combinedFormValues$.pipe(
+      debounceTime(300),
+      filter((formValues) => formValues.year > 2000),
+      tap((formValues) => {
+        console.log(formValues.month, formValues.year, formValues)
+        this.showSpinner = true;
+        this.expensesByCategories = {};
+      }),
+      switchMap((formValues) => this.expensesService.getExpensesByMonthAndYear(formValues.month, formValues.year))
+    ).subscribe((expensesData: ExpenseItem[]) => {
+      this.monthExpensesFromDB = expensesData
+      this.showSpinner = false;
+      this.initializeExpensesByCategories()
+    })
+
     this.categoriesService.getCategories().subscribe((categoriesList: Category[]) => {
       for (const category of categoriesList) {
         this.categoriesNames.push(category.name);
       }
     })
-    this.expensesService.getExpensesByMonth(this.lastMonth)
+
+    this.expensesService.getExpensesByMonthAndYear(this.expensesDateForm.get('month')!.value, this.expensesDateForm.get('year')!.value)
       .subscribe((expensesData: ExpenseItem[]) => {
         this.monthExpensesFromDB = expensesData
         this.showSpinner = false;
         this.initializeExpensesByCategories()
 
       })
-    this.selectedMonth = this.lastMonth
-    this.monthsOptions = Object.values(Months);
+  }
+
+  setForm() {
+    this.expensesDateForm = this.formBuilder.group({
+      year: new Date().getFullYear(),
+      month: Object.keys(Months)[new Date().getMonth() - 1]
+    });
   }
 
   initializeExpensesByCategories() {
@@ -53,17 +79,19 @@ export class MonthlyExpensesPageComponent implements OnInit {
     }
   }
 
-  onMonthClicked() {
-    this.showSpinner = true;
-    this.expensesByCategories = {};
-    this.expensesService.getExpensesByMonth(this.selectedMonth)
-      .subscribe((expensesData: ExpenseItem[]) => {
-        this.monthExpensesFromDB = expensesData
-        this.showSpinner = false;
-        this.initializeExpensesByCategories()
-      })
-  }
+  onCategoryClicked(category: string) {
+    const dialogRef = this.dialog.open(CategoryExpensesComponent, {
+      width: '400px',
+      disableClose: false,
+      data: {
+        month: this.expensesDateForm.get('month')!.value,
+        year: this.expensesDateForm.get('year')!.value,
+        categoryName: category
+      }
+    })
+  };
 
+  protected readonly Object = Object;
 }
 
 

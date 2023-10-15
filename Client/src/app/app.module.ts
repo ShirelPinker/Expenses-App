@@ -10,6 +10,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ExpenseChartComponent } from './components/expenses-chart/expenses-chart.component';
 import { NgChartsModule } from 'ng2-charts';
+import { CategoryExpensesComponent } from './components/category-expenses/category-expenses.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -18,7 +21,8 @@ import { NgChartsModule } from 'ng2-charts';
     MonthlyExpensesPageComponent,
     AddMonthlyExpensesFormPageComponent,
     NavbarComponent,
-    ExpenseChartComponent
+    ExpenseChartComponent,
+    CategoryExpensesComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +32,8 @@ import { NgChartsModule } from 'ng2-charts';
     ReactiveFormsModule,
     FontAwesomeModule,
     NgChartsModule,
-
+    MatDialogModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

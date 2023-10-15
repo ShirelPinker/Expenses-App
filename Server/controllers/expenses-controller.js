@@ -11,7 +11,9 @@ router.get("/", async (request, response, next) => {
   }
   let expenses;
   try {
-    if (year) {
+    if (month && year) {
+      expenses = await expensesLogic.getExpensesByMonthAndYear(month, year);
+    } else if (year) {
       expenses = await expensesLogic.getExpensesByYear(year);
     } else {
       expenses = await expensesLogic.getExpensesByMonth(month);

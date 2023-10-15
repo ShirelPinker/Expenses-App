@@ -5,7 +5,7 @@ import {Months} from "../../models/MonthsEnum";
 import {Category} from "../../models/Category";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Observable} from "rxjs";
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import {faSpinner} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-add-monthly-expenses-form-page',
@@ -38,7 +38,7 @@ export class AddMonthlyExpensesFormPageComponent implements OnInit {
   }
 
   submit() {
-    this.expensesService.addExpense(this.expenseForm.value).subscribe()
+    this.expensesService.addExpense(this.expenseForm.value).subscribe(() => this.setForm())
   }
 
   protected readonly Object = Object;

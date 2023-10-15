@@ -1,0 +1,8 @@
+.category-list-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  background-color: lightblue;
+  padding: 7px;
+}
