@@ -74,9 +74,15 @@ select.input-field {
   background-color: #0056b3;
 }
 
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 p {
   text-align: center;
   font-size: 18px;
   margin-top: 20px;
   color: #666;
 }
+

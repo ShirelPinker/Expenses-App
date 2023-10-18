@@ -1,21 +1,31 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit} from '@angular/core';
 import {ExpensesService} from "../../services/expenses.service";
 import {CategoriesService} from "../../services/categories.service";
 import {Months} from "../../models/MonthsEnum";
 import {Category} from "../../models/Category";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Observable} from "rxjs";
 import {faSpinner} from '@fortawesome/free-solid-svg-icons';
+import {NewExpenseItem} from "../../models/NewExpenseItem";
+
+interface ExpenseForm {
+  categoryId: FormControl<number | null>;
+  amount: FormControl<number | null>;
+  year: FormControl<number>;
+  month: FormControl<string>;
+}
 
 @Component({
   selector: 'app-add-monthly-expenses-form-page',
   templateUrl: './add-monthly-expenses-form-page.component.html',
   styleUrls: ['./add-monthly-expenses-form-page.component.css']
 })
-export class AddMonthlyExpensesFormPageComponent implements OnInit {
+
+
+export class AddMonthlyExpensesFormPageComponent implements AfterViewInit {
   Months = Months;
   categories$: Observable<Category[]>
-  expenseForm: FormGroup;
+  expenseForm: FormGroup<ExpenseForm>;
   faSpinner = faSpinner;
 
   constructor(
@@ -24,26 +34,27 @@ export class AddMonthlyExpensesFormPageComponent implements OnInit {
     private formBuilder: FormBuilder,
     private elementRef: ElementRef
   ) {
-    this.expenseForm = this.formBuilder.group({});
+    this.expenseForm = this.formBuilder.group<ExpenseForm>({
+      categoryId: new FormControl(null, [Validators.required]),
+      amount: new FormControl(null, [Validators.required]),
+      year: new FormControl(new Date().getFullYear(), {nonNullable: true, validators: [Validators.required]}),
+      month: new FormControl(Object.keys(Months)[new Date().getMonth()], {
+        nonNullable: true,
+        validators: [Validators.required]
+      }),
+    });
     this.categories$ = this.categoriesService.getCategories()
   }
 
-  ngOnInit(): void {
-    this.setForm()
-  }
-
-  setForm() {
-    this.expenseForm = this.formBuilder.group({
-      categoryId: [null],
-      amount: null,
-      year: new Date().getFullYear(),
-      month: [Object.keys(Months)[new Date().getMonth()]]
-    });
+  ngAfterViewInit(): void {
+    this.categories$.subscribe(() => this.focusOnCategories())
   }
 
   submit() {
-    this.expensesService.addExpense(this.expenseForm.value).subscribe(() => {
-      this.setForm()
+    this.expensesService.addExpense(this.expenseForm.value as NewExpenseItem).subscribe(() => {
+      this.expenseForm.controls.categoryId.reset()
+      this.expenseForm.controls.amount.reset()
+
       this.focusOnCategories();
     })
   }
