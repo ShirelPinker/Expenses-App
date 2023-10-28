@@ -13,6 +13,7 @@ interface ExpenseForm {
   amount: FormControl<number | null>;
   year: FormControl<number>;
   month: FormControl<string>;
+  description: FormControl<string>;
 }
 
 @Component({
@@ -37,6 +38,7 @@ export class AddMonthlyExpensesFormPageComponent implements AfterViewInit {
     this.expenseForm = this.formBuilder.group<ExpenseForm>({
       categoryId: new FormControl(null, [Validators.required]),
       amount: new FormControl(null, [Validators.required]),
+      description: new FormControl(),
       year: new FormControl(new Date().getFullYear(), {nonNullable: true, validators: [Validators.required]}),
       month: new FormControl(Object.keys(Months)[new Date().getMonth()], {
         nonNullable: true,
@@ -54,6 +56,7 @@ export class AddMonthlyExpensesFormPageComponent implements AfterViewInit {
     this.expensesService.addExpense(this.expenseForm.value as NewExpenseItem).subscribe(() => {
       this.expenseForm.controls.categoryId.reset()
       this.expenseForm.controls.amount.reset()
+      this.expenseForm.controls.description.reset()
 
       this.focusOnCategories();
     })

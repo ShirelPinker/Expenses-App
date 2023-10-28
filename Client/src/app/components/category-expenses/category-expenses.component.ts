@@ -1,8 +1,10 @@
 import {Component, Inject, Input, OnInit} from '@angular/core';
 import {ExpensesService} from "../../services/expenses.service";
 import {ExpenseItem} from "../../models/ExpenseItem";
-import {faSpinner} from "@fortawesome/free-solid-svg-icons";
+import {faSpinner, faTrash, faPencil} from "@fortawesome/free-solid-svg-icons";
 import {MAT_DIALOG_DATA, MatDialogModule} from "@angular/material/dialog";
+import {log10} from "chart.js/helpers";
+import {ExpenseUserChangesService} from "../../services/expense-user-changes.service";
 
 @Component({
   selector: 'app-category-expenses',
@@ -14,8 +16,10 @@ export class CategoryExpensesComponent implements OnInit {
   monthExpensesFromDB: ExpenseItem[] = [];
   showSpinner: boolean = true;
   categoryExpenses: ExpenseItem[] = []
+  faTrash = faTrash;
+  faPencil = faPencil;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private expensesService: ExpensesService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private expenseUserChangesService: ExpenseUserChangesService, private expensesService: ExpensesService) {
   }
 
   ngOnInit(): void {
@@ -27,11 +31,22 @@ export class CategoryExpensesComponent implements OnInit {
   }
 
   initializeCategoryExpenses() {
-    console.log(this.monthExpensesFromDB)
-
     this.categoryExpenses = this.monthExpensesFromDB.filter(expense => expense.categoryName == this.data.categoryName);
-    console.log(this.categoryExpenses)
   }
+
+
+  onDeleteExpenseClicked(expenseId: number) {
+    this.expensesService.deleteExpense(expenseId).subscribe(
+      {
+        next: () => {
+          this.categoryExpenses = this.categoryExpenses.filter(item => item.id != expenseId);
+          this.expenseUserChangesService.onDeleteExpenseClicked(expenseId)
+        },
+        error: () => console.log('error-did not delete')
+      }
+    )
+  }
+
 
   protected readonly faSpinner = faSpinner;
 }

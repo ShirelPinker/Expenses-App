@@ -1,17 +1,31 @@
 <div class="expenses-page-container">
-  <div class="monthly-expenses-title-container">
-    <div class="monthly-expenses-title">{{expensesDateForm.get('month')!.value}} Expenses</div>
 
-    <form class="form-container" [formGroup]="expensesDateForm">
+  <div class="monthly-expenses-title-container">
+    <div class="monthly-expenses-title">{{showExpensesForm.get('month')!.value}} Expenses</div>
+
+    <form class="form-container" [formGroup]="showExpensesForm">
+
+      <div class="header">
+        <div class="sort-dropdown">
+          <label>Sort By: </label>
+          <select class="sort-input-field" formControlName="selectedSortOrder" >
+            <option value="alphabetical">a-z</option>
+            <option value="amount">Amount</option>
+          </select>
+        </div>
+
+        <div class="year-field-container">
+          <label>Year</label>
+          <input class="input-field year-input-field" formControlName="year" type="number">
+        </div>
+      </div>
+
       <div class="month-dropdown">
         <select class="input-field" formControlName="month">
           <option *ngFor="let month of Object.keys(Months)" [ngValue]="month">{{ month }}</option>
         </select>
       </div>
-      <div class="year-field-container">
-        <label>Year</label>
-        <input class="input-field year-input-field" formControlName="year" type="number">
-      </div>
+
     </form>
 
   </div>
@@ -20,8 +34,8 @@
   <div *ngIf="!showSpinner" class="all-expenses-container">
     <div class="expense-container" *ngFor="let category of categoriesNames">
       <div class="category-name" (click)="onCategoryClicked(category)">{{ category }}:</div>
-      <div class="category-amount">{{ expensesByCategories[category] | currency:'ILS' }}</div>
+      <div class="category-amount">{{ expensesByCategories[category] |  currency:'ILS' }}</div>
     </div>
   </div>
-  <div>Total: {{total}}</div>
+  <div class="total-amount">Total spent: {{total  | currency:'ILS'}}</div>
 </div>

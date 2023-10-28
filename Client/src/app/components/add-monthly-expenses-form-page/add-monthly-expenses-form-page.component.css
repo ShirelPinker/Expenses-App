@@ -8,7 +8,7 @@
   background-color: #eaeeff;
   font-family: sans-serif;
   max-width: 400px;
-  margin: 30px auto;
+  margin: 50px auto;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -30,11 +30,22 @@
   margin-bottom: 20px;
 }
 
-label {
+.form-date-container{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+
+}
+
+.main-input-label {
   font-size: 16px;
   margin-bottom: 6px;
   color: #7749a1;
+}
 
+.date-input-label{
+  margin-bottom: 6px;
+  color: #7749a1;
 }
 
 .input-field {
@@ -56,7 +67,13 @@ select.input-field {
   cursor: pointer;
 }
 
+.month-input-field{
+  height: 21px;
+}
 
+.year-input-field{
+  width: 88px;
+}
 .submit-btn {
   display: block;
   background-color: #007bff;

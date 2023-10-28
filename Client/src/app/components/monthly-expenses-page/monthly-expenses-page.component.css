@@ -1,6 +1,7 @@
 .form-container{
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   width: 96%;
 
 }
@@ -44,11 +45,23 @@
   cursor: pointer;
 }
 
+.month-dropdown{
+  margin: auto;
+}
+.header{
+  display: flex;
+  justify-content: space-between;
+}
+
 .year-input-field{
   width: 45px;
   margin-left: 5px;
 }
 
+
+.sort-input-field{
+  width: 75px;
+}
 p {
   font-size: 18px;
   color: #666;
@@ -57,6 +70,8 @@ p {
 .all-expenses-container{
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
+  max-height: 580px;
 }
 
 .expense-container{
@@ -75,4 +90,9 @@ p {
 div p {
   font-size: 16px;
   color: #333;
+}
+
+.total-amount{
+  margin-top: 20px;
+
 }

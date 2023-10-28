@@ -15,12 +15,17 @@ async function getExpensesByMonthAndYear(month, year) {
 }
 
 async function addExpense(newExpense){
-
   return await expensesDal.addExpense(newExpense);
 }
+
+async function deleteExpense(expenseId){
+  return await expensesDal.deleteExpense(expenseId);
+}
+
 module.exports = {
   getExpensesByMonth,
   getExpensesByYear,
   getExpensesByMonthAndYear,
-  addExpense
+  addExpense,
+  deleteExpense
 };

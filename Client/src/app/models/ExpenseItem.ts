@@ -1,6 +1,8 @@
 export interface ExpenseItem {
+  id:number,
   amount: number,
   year: number,
   month: string,//enum
-  categoryName: string
+  categoryName: string,
+  description?: string
 }

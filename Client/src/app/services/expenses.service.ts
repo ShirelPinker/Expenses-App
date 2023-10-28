@@ -13,19 +13,22 @@ export class ExpensesService {
   }
 
   getExpensesByMonthAndYear(month: string, year: number): Observable<ExpenseItem[]> {
-    return this.http.get<ExpenseItem[]>(`http://localhost:3001/expenses/?month=${month}&year=${year}`).pipe(delay(1000))
+    return this.http.get<ExpenseItem[]>(`http://localhost:3001/expenses/?month=${month}&year=${year}`)//.pipe(delay(1000))
   }
 
   getExpensesByMonth(month: string): Observable<ExpenseItem[]> {
-    return this.http.get<ExpenseItem[]>(`http://localhost:3001/expenses/?month=${month}`).pipe(delay(1000))
+    return this.http.get<ExpenseItem[]>(`http://localhost:3001/expenses/?month=${month}`)//.pipe(delay(1000))
   }
 
   getExpensesByYear(year: number): Observable<ExpenseItem[]> {
-    return this.http.get<ExpenseItem[]>(`http://localhost:3001/expenses/?year=${year}`).pipe(delay(1000))
+    return this.http.get<ExpenseItem[]>(`http://localhost:3001/expenses/?year=${year}`)//.pipe(delay(1000))
   }
 
   addExpense(newExpense: NewExpenseItem): Observable<void> {
-    return this.http.post<void>(`http://localhost:3001/expenses/`, newExpense).pipe(delay(1000))
+    return this.http.post<void>(`http://localhost:3001/expenses/`, newExpense)//.pipe(delay(1000))
+  }
 
+  deleteExpense(expenseId: number): Observable<void> {
+    return this.http.delete<void>(`http://localhost:3001/expenses/${expenseId}`)//.pipe(delay(1000))
   }
 }

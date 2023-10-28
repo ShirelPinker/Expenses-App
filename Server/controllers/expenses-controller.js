@@ -33,5 +33,14 @@ router.post("/", async (request, response, next) => {
     next(e)
   }
 });
+router.delete("/:id", async (request, response, next) => {
+  const expenseId = request.params.id;
 
+  try {
+    await expensesLogic.deleteExpense(expenseId);
+    response.json();
+  } catch (e) {
+    next(e)
+  }
+});
 module.exports = router;
