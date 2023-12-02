@@ -33,6 +33,17 @@ router.post("/", async (request, response, next) => {
     next(e)
   }
 });
+router.put("/:id", async (request, response, next) => {
+  const updatedExpenseId = request.params.id
+  const updatedExpense = request.body;
+
+  try {
+    await expensesLogic.updateExpense(updatedExpenseId, updatedExpense);
+    response.json();
+  } catch (e) {
+    next(e)
+  }
+});
 router.delete("/:id", async (request, response, next) => {
   const expenseId = request.params.id;
 

@@ -11,6 +11,7 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import {MatDialog} from '@angular/material/dialog';
 import {CategoryExpensesComponent} from "../category-expenses/category-expenses.component";
 import {ExpenseUserChangesService} from "../../services/expense-user-changes.service";
+import {UpdatedExpense} from "../../models/UpdatedExpense";
 
 
 @Component({
@@ -57,11 +58,24 @@ export class MonthlyExpensesPageComponent implements OnInit {
     this.expenseUserChangesService.getDeletedId().subscribe(
       (deletedId) => this.onDeleteExpense(deletedId)
     )
+    this.expenseUserChangesService.getUpdatedExpense().subscribe(
+      (updatedExpense) => this.onExpenseUpdated(updatedExpense)
+    )
   }
 
   onDeleteExpense(deletedId: number) {
     this.monthExpensesFromDB = this.monthExpensesFromDB.filter(item => item.id != deletedId);
-    this.initializeMonthPage( this.monthExpensesFromDB )
+    this.initializeMonthPage(this.monthExpensesFromDB)
+  }
+
+  onExpenseUpdated(updatedExpense: UpdatedExpense) {
+    this.monthExpensesFromDB = this.monthExpensesFromDB.map(item => {
+      if (item.id === updatedExpense.id) {
+        return {...item, ...updatedExpense};
+      }
+      return item;
+    });
+    this.initializeMonthPage(this.monthExpensesFromDB)
   }
 
   listenToYearOrMonthChanges(yearOrMonthChanged$: Observable<string | number>) {

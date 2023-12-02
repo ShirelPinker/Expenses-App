@@ -21,11 +21,15 @@ async function addExpense(newExpense){
 async function deleteExpense(expenseId){
   return await expensesDal.deleteExpense(expenseId);
 }
+async function updateExpense(updatedExpenseId, updatedExpense){
+  return await expensesDal.updateExpense(updatedExpenseId, updatedExpense)
+}
 
 module.exports = {
   getExpensesByMonth,
   getExpensesByYear,
   getExpensesByMonthAndYear,
   addExpense,
-  deleteExpense
+  deleteExpense,
+  updateExpense
 };

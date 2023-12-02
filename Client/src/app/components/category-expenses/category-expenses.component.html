@@ -3,11 +3,6 @@
   <fa-icon *ngIf="showSpinner" [icon]="faSpinner" class="fa-solid fa-spinner fa-spin-pulse"></fa-icon>
   <div *ngIf="!showSpinner" class="all-expenses-container">
     <div>{{data.categoryName}}</div>
-    <div class="expense-container" *ngFor="let expense of categoryExpenses">
-        <div class="expense-amount">{{ expense.amount | currency:'ILS' }}</div>
-        <div class="expense-description">{{expense.description}}</div>
-        <fa-icon [icon]="faPencil" class="fa-regular fa-pencil edit-btn"></fa-icon>
-        <fa-icon [icon]="faTrash" (click)="onDeleteExpenseClicked(expense.id)" class="fa-solid fa-trash delete-btn"></fa-icon>
-    </div>
+    <app-expense-item *ngFor="let expense of categoryExpenses" [expense]="expense"></app-expense-item>
   </div>
 </mat-dialog-content>

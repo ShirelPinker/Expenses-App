@@ -16,8 +16,7 @@ export class CategoryExpensesComponent implements OnInit {
   monthExpensesFromDB: ExpenseItem[] = [];
   showSpinner: boolean = true;
   categoryExpenses: ExpenseItem[] = []
-  faTrash = faTrash;
-  faPencil = faPencil;
+
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private expenseUserChangesService: ExpenseUserChangesService, private expensesService: ExpensesService) {
   }
@@ -27,6 +26,9 @@ export class CategoryExpensesComponent implements OnInit {
       this.monthExpensesFromDB = expensesData
       this.showSpinner = false;
       this.initializeCategoryExpenses()
+      this.expenseUserChangesService.getDeletedId().subscribe(
+        (deletedId) => this.onDeleteExpense(deletedId)
+      )
     })
   }
 
@@ -35,17 +37,11 @@ export class CategoryExpensesComponent implements OnInit {
   }
 
 
-  onDeleteExpenseClicked(expenseId: number) {
-    this.expensesService.deleteExpense(expenseId).subscribe(
-      {
-        next: () => {
-          this.categoryExpenses = this.categoryExpenses.filter(item => item.id != expenseId);
-          this.expenseUserChangesService.onDeleteExpenseClicked(expenseId)
-        },
-        error: () => console.log('error-did not delete')
-      }
-    )
+  onDeleteExpense(deletedId: number) {
+    this.monthExpensesFromDB = this.monthExpensesFromDB.filter(item => item.id != deletedId);
+    this.initializeCategoryExpenses()
   }
+
 
 
   protected readonly faSpinner = faSpinner;

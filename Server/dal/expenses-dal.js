@@ -30,10 +30,18 @@ async function deleteExpense(expenseId) {
   await connection.execute(sql);
 }
 
+async function updateExpense(updatedExpenseId, updatedExpense){
+  const sql = `UPDATE Expenses SET amount = ?, description = ? WHERE id = ?`;
+  const parameters = [updatedExpense.amount, updatedExpense.description, updatedExpenseId];
+  await connection.executeWithParameters(sql, parameters);
+
+}
+
 module.exports = {
   getExpensesByMonth,
   getExpensesByYear,
   getExpensesByMonthAndYear,
   addExpense,
-  deleteExpense
+  deleteExpense,
+  updateExpense
 };

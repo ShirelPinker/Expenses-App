@@ -1,0 +1,18 @@
+<div *ngIf="!editMode" class="expense-container">
+  <div class="expense-amount">{{ expense.amount | currency:'ILS' }}</div>
+  <div class="expense-description">{{ expense.description }}</div>
+  <fa-icon [icon]="faPencil" (click)="onEditClicked()" class="fa-regular fa-pencil edit-btn"></fa-icon>
+  <fa-icon [icon]="faTrash" (click)="onDeleteExpenseClicked()" class="fa-solid fa-trash delete-btn"></fa-icon>
+</div>
+
+<div *ngIf="editMode" class="expense-container">
+  <div>
+    <input  type="number" [(ngModel)]="expense.amount" class="edit-input"/>
+  </div>
+  <div>
+    <input [(ngModel)]="expense.description" class="edit-input"/>
+  </div>
+  <button (click)="onSubmitClicked()">submit</button>
+  <button (click)="onCancelClicked()">cancel</button>
+</div>
+

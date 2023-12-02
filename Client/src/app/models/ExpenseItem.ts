@@ -4,5 +4,5 @@ export interface ExpenseItem {
   year: number,
   month: string,//enum
   categoryName: string,
-  description?: string
+  description: string | null
 }

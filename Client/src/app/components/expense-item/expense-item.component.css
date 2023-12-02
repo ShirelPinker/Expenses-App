@@ -1,0 +1,16 @@
+.expense-container{
+  display: flex;
+  gap: 6px;
+}
+.expense-description{
+  color:darkslategrey ;
+}
+.delete-btn, .edit-btn{
+  cursor: pointer;
+}
+.edit-input {
+  border: 1px solid #ccc;
+  padding: 5px;
+  width: 60px;
+  /* Add any other styling you want */
+}

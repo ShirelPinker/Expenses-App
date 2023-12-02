@@ -13,6 +13,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { CategoryExpensesComponent } from './components/category-expenses/category-expenses.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ExpenseItemComponent } from './components/expense-item/expense-item.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AddMonthlyExpensesFormPageComponent,
     NavbarComponent,
     ExpenseChartComponent,
-    CategoryExpensesComponent
+    CategoryExpensesComponent,
+    ExpenseItemComponent
   ],
   imports: [
     BrowserModule,

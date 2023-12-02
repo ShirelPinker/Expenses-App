@@ -6,13 +6,3 @@
   background-color: lightblue;
   padding: 7px;
 }
-.expense-container{
-  display: flex;
-  gap: 6px;
-}
-.expense-description{
-  color:darkslategrey ;
-}
-.delete-btn, .edit-btn{
-  cursor: pointer;
-}
