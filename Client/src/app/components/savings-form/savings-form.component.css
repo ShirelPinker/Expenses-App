@@ -1,0 +1,73 @@
+.savings-form-title {
+  font-size: 24px;
+  color: #947da9;
+  margin-top: 20px;
+}
+
+.form-fields-container {
+  margin-top: 38px ;
+}
+
+.form-input-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.form-date-container{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+
+}
+
+.main-input-label {
+  font-size: 16px;
+  margin-bottom: 6px;
+  color: #7749a1;
+}
+
+.date-input-label{
+  margin-bottom: 6px;
+  color: #7749a1;
+}
+
+.input-field {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background: #ffffffa1;
+}
+
+select.input-field {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" height="24" width="24" xmlns="http://www.w3.org/2000/svg"><polygon points="0,0 24,0 12,24"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 16px;
+  cursor: pointer;
+}
+
+.month-input-field{
+  height: 21px;
+}
+
+.year-input-field{
+  width: 88px;
+}
+
+.submit-btn {
+  display: block;
+  background-color: #007bff;
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: auto;
+}

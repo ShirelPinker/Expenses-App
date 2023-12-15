@@ -1,0 +1,33 @@
+.form-and-display-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 50px;
+}
+
+.savings-display-container, .savings-form-container {
+  padding: 20px;
+  border: 1px solid #ccc;
+  font-family: sans-serif;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 45%;
+  height: 600px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 8px;
+  background-color: #eaeeff;
+  max-height: 1000px;
+}
+
+.savings-page-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-date-container {
+  margin: 20px auto;
+  display: flex;
+  gap: 10px;
+}
