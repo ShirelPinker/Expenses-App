@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require("cors");
 const expensesController = require("./controllers/expenses-controller");
 const categoriesController = require("./controllers/categories-controller");
+const savingsController = require("./controllers/savings-controller");
 
 
 
@@ -14,6 +15,7 @@ app.use(cors({
 }));
 app.use(express.json());
 
+app.use("/savings", savingsController);
 app.use("/expenses", expensesController);
 app.use("/categories", categoriesController);
 

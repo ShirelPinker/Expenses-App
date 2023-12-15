@@ -40,7 +40,7 @@ export class AddMonthlyExpensesFormPageComponent implements AfterViewInit {
       amount: new FormControl(null, [Validators.required]),
       description: new FormControl(),
       year: new FormControl(new Date().getFullYear(), {nonNullable: true, validators: [Validators.required]}),
-      month: new FormControl(Object.keys(Months)[new Date().getMonth()], {
+      month: new FormControl(Object.keys(Months)[new Date().getMonth()-1], {
         nonNullable: true,
         validators: [Validators.required]
       }),
