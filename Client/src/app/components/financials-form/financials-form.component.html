@@ -1,0 +1,37 @@
+<form class="savings-form-container" [formGroup]="financialsForm" (ngSubmit)="submit()">
+  <div class="savings-form-title">Add financials for {{financialsForm.get('month')!.value}}</div>
+
+  <div class="form-fields-container">
+
+    <div class="form-date-container ">
+      <div class="month-dropdown form-input-container">
+        <label class="date-input-label">Month</label>
+        <select class="month-input-field" formControlName="month">
+          <option *ngFor="let month of Object.keys(Months)" [ngValue]="month">{{ month }}</option>
+        </select>
+      </div>
+
+      <div class="form-input-container">
+        <label class="date-input-label">Year</label>
+        <input class="year-input-field" formControlName="year" type="number">
+      </div>
+    </div>
+
+    <div class="type-dropdown form-input-container">
+      <label class="main-input-label">Financial activity:</label>
+      <select class="input-field" formControlName="type">
+        <option *ngFor="let type of Object.keys(FinancialActivitiesTypes)" [ngValue]="type">{{ type }}</option>
+      </select>
+    </div>
+
+    <div class="form-input-container">
+      <label class="main-input-label">Amount</label>
+      <input class="input-field" formControlName="amount" type="number">
+    </div>
+
+
+  </div>
+
+  <button class="submit-btn" type="submit" [disabled]="financialsForm.invalid">Submit</button>
+
+</form>

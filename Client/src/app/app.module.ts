@@ -15,8 +15,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ExpenseItemComponent } from './components/expense-item/expense-item.component';
 import { FinancialActivitiesPageComponent } from './components/financial-activities-page/financial-activities-page.component';
-import { SavingsDisplayComponent } from './components/savings-display/savings-display.component';
-import { SavingsFormComponent } from './components/savings-form/savings-form.component';
+import { FinancialsDisplayComponent } from './components/financials-display/financials-display.component';
+import { FinancialsFormComponent } from './components/financials-form/financials-form.component';
 
 
 @NgModule({
@@ -29,8 +29,8 @@ import { SavingsFormComponent } from './components/savings-form/savings-form.com
     CategoryExpensesComponent,
     ExpenseItemComponent,
     FinancialActivitiesPageComponent,
-    SavingsDisplayComponent,
-    SavingsFormComponent
+    FinancialsDisplayComponent,
+    FinancialsFormComponent
   ],
   imports: [
     BrowserModule,

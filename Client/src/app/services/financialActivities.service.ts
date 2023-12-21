@@ -11,9 +11,9 @@ export class FinancialActivitiesService {
   constructor(private http: HttpClient) { }
 
   addMonthFinancials(newMonthFinancialActivities: NewMonthFinancialActivities): Observable<void> {
-    return this.http.post<void>(`http://localhost:3001/savings`, newMonthFinancialActivities)
+    return this.http.post<void>(`http://localhost:3001/financialActivities`, newMonthFinancialActivities)
   }
   getFinancialActivitiesService(): Observable<void> {
-    return this.http.get<void>(`http://localhost:3001/savings`)
+    return this.http.get<void>(`http://localhost:3001/financialActivities`)
   }
 }
