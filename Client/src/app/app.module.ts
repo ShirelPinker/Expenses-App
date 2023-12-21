@@ -14,7 +14,7 @@ import { CategoryExpensesComponent } from './components/category-expenses/catego
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ExpenseItemComponent } from './components/expense-item/expense-item.component';
-import { SavingsPageComponent } from './components/savings-page/savings-page.component';
+import { FinancialActivitiesPageComponent } from './components/financial-activities-page/financial-activities-page.component';
 import { SavingsDisplayComponent } from './components/savings-display/savings-display.component';
 import { SavingsFormComponent } from './components/savings-form/savings-form.component';
 
@@ -28,7 +28,7 @@ import { SavingsFormComponent } from './components/savings-form/savings-form.com
     ExpenseChartComponent,
     CategoryExpensesComponent,
     ExpenseItemComponent,
-    SavingsPageComponent,
+    FinancialActivitiesPageComponent,
     SavingsDisplayComponent,
     SavingsFormComponent
   ],

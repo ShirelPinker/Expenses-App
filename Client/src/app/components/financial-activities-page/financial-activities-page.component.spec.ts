@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SavingsPageComponent } from './savings-page.component';
+import { SavingsPageComponent } from './financial-activities-page.component';
 
 describe('SavingsPageComponent', () => {
   let component: SavingsPageComponent;

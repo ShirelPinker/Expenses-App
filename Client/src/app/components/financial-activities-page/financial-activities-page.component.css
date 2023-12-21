@@ -5,7 +5,7 @@
   margin: 50px;
 }
 
-.savings-display-container, .savings-form-container {
+.financials-display-container, .financials-form-container {
   padding: 20px;
   border: 1px solid #ccc;
   font-family: sans-serif;
@@ -21,7 +21,7 @@
   max-height: 1000px;
 }
 
-.savings-page-container {
+.financial-activities-page-container {
   display: flex;
   flex-direction: column;
 }

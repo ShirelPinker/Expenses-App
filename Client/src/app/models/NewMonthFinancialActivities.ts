@@ -1,4 +1,4 @@
-export interface NewMonthSavings {
+export interface NewMonthFinancialActivities {
   year: number,
   month: string,
   incomeAmount: number,

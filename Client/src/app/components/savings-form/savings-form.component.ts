@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {SavingsService} from "../../services/savings.service";
-import {NewMonthSavings} from "../../models/NewMonthSavings";
+import {FinancialActivitiesService} from "../../services/financialActivities.service";
+import {NewMonthFinancialActivities} from "../../models/NewMonthFinancialActivities";
 import {Months} from "../../models/MonthsEnum";
 
 
@@ -22,7 +22,7 @@ interface savingsForm {
 export class SavingsFormComponent {
   savingsForm: FormGroup<savingsForm>;
 
-  constructor(private formBuilder: FormBuilder, private savingsService: SavingsService) {
+  constructor(private formBuilder: FormBuilder, private savingsService: FinancialActivitiesService) {
     this.savingsForm = this.formBuilder.group<savingsForm>({
       incomeAmount: new FormControl(null, [Validators.required]),
       investmentAmount: new FormControl(null, [Validators.required]),
@@ -37,7 +37,7 @@ export class SavingsFormComponent {
   }
 
   submit() {
-    this.savingsService.addMonthSavings(this.savingsForm.value as NewMonthSavings).subscribe(() => {
+    this.savingsService.addMonthFinancials(this.savingsForm.value as NewMonthFinancialActivities).subscribe(() => {
         this.savingsForm.controls.incomeAmount.reset()
         this.savingsForm.controls.investmentAmount.reset()
         this.savingsForm.controls.depositAmount.reset()

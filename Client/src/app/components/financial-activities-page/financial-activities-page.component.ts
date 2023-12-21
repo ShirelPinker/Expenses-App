@@ -3,11 +3,11 @@ import {FormControl, Validators} from "@angular/forms";
 import {Months} from "../../models/MonthsEnum";
 
 @Component({
-  selector: 'app-savings-page',
-  templateUrl: './savings-page.component.html',
-  styleUrls: ['./savings-page.component.css']
+  selector: 'app-financial-activities-page',
+  templateUrl: './financial-activities-page.component.html',
+  styleUrls: ['./financial-activities-page.component.css']
 })
-export class SavingsPageComponent {
+export class FinancialActivitiesPageComponent {
 
   constructor() {
   }
