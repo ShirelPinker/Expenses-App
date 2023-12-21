@@ -2,7 +2,7 @@
 <div class="chart-container">
 <div>
   <label>Year</label>
-  <input [(ngModel)]="year" />
+  <input type="number" [(ngModel)]="year" (input)="onYearChanged()" />
 </div>
   <canvas  id="MyChart" >{{ chart }}</canvas>
 </div>

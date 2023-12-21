@@ -1,8 +1,12 @@
 .category-list-container{
   display: flex;
-  align-items: center;
   justify-content: center;
-  height: 100%;
   background-color: lightblue;
   padding: 7px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+.category-list-title{
+  font-weight: bold;
+  color: #4b6dff;
 }

@@ -1,12 +1,16 @@
 import {Component, OnInit} from '@angular/core';
 import {CategoriesExpenses} from "../../models/CategoriesExpenses";
 import {ExpensesService} from "../../services/expenses.service";
-import {debounceTime, EMPTY, filter, map, merge, Observable, startWith, switchMap, take, tap} from "rxjs";
+import {debounceTime, filter, map, merge, Observable, startWith, switchMap, take, tap} from "rxjs";
 import {ExpenseItem} from "../../models/ExpenseItem";
 import {Months} from "../../models/MonthsEnum";
 import {CategoriesService} from "../../services/categories.service";
 import {Category} from "../../models/Category";
-import {faSpinner} from '@fortawesome/free-solid-svg-icons';
+import {
+  faArrowLeft,
+  faArrowRight,
+  faSpinner
+} from '@fortawesome/free-solid-svg-icons';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {MatDialog} from '@angular/material/dialog';
 import {CategoryExpensesComponent} from "../category-expenses/category-expenses.component";
@@ -26,8 +30,11 @@ export class MonthlyExpensesPageComponent implements OnInit {
   Months = Months;
   categoriesNames: string[] = [];
   faSpinner = faSpinner;
+  faArrowRight = faArrowRight;
+  faArrowLeft = faArrowLeft;
   showExpensesForm: FormGroup;
   total: number = 0;
+  monthsIndexed = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
 
   constructor(private expenseUserChangesService: ExpenseUserChangesService, private dialog: MatDialog, private expensesService: ExpensesService, private categoriesService: CategoriesService, private formBuilder: FormBuilder) {
@@ -90,7 +97,7 @@ export class MonthlyExpensesPageComponent implements OnInit {
       }),
       switchMap((formValues) => this.expensesService.getExpensesByMonthAndYear(formValues.month, formValues.year))
     ).subscribe((expensesData: ExpenseItem[]) => {
-      this.showExpensesForm.get('selectedSortOrder')!.setValue('alphabetical');
+      this.showExpensesForm.get('selectedSortOrder')!.setValue('amount');
       this.initializeMonthPage(expensesData)
 
     })
@@ -102,6 +109,30 @@ export class MonthlyExpensesPageComponent implements OnInit {
     this.sortCategories()
     this.total = this.calculateMonthlyExpensesSum();
     this.showSpinner = false;
+  }
+
+  onPreviousMonthClicked() {
+    const currentMonth = this.showExpensesForm.get('month')!.value;
+    const currentMonthIndex = this.monthsIndexed.indexOf(currentMonth)
+    let previousMonth
+    if (currentMonthIndex == 0) {
+      return
+    } else {
+      previousMonth = this.monthsIndexed[currentMonthIndex - 1];
+      this.showExpensesForm.get('month')!.setValue(previousMonth);
+    }
+  }
+
+  onNextMonthClicked() {
+    const currentMonth = this.showExpensesForm.get('month')!.value;
+    const currentMonthIndex = this.monthsIndexed.indexOf(currentMonth)
+    let nextMonth
+    if (currentMonthIndex == 11) {
+      return
+    } else {
+      nextMonth = this.monthsIndexed[currentMonthIndex + 1];
+      this.showExpensesForm.get('month')!.setValue(nextMonth);
+    }
   }
 
   sortCategories() {
@@ -119,7 +150,7 @@ export class MonthlyExpensesPageComponent implements OnInit {
     this.showExpensesForm = this.formBuilder.group({
       year: new Date().getFullYear(),
       month: Object.keys(Months)[new Date().getMonth() - 1],
-      selectedSortOrder: 'alphabetical'
+      selectedSortOrder: 'amount'
     });
   }
 

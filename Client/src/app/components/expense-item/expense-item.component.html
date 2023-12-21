@@ -12,7 +12,10 @@
   <div>
     <input [(ngModel)]="expense.description" class="edit-input"/>
   </div>
-  <button (click)="onSubmitClicked()">submit</button>
-  <button (click)="onCancelClicked()">cancel</button>
+  <div class="action-buttons">
+    <button (click)="onSubmitClicked()">submit</button>
+    <button (click)="onCancelClicked()">cancel</button>
+  </div>
+
 </div>
 
