@@ -47,6 +47,12 @@ export class ExpenseChartComponent implements OnInit {
     }
   }
 
+  onYearChanged() {
+    this.dataByMonth=[];
+    this.expensesFromDB=[]
+    this.initializeMonthlyExpensesChart()
+  }
+
   createChart() {
 
     this.chart = new Chart("MyChart", {
