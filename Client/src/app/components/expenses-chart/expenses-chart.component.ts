@@ -20,19 +20,20 @@ export class ExpenseChartComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.initializeMonthlyExpensesChart()
+  }
 
+  initializeMonthlyExpensesChart() {
     this.expensesService.getExpensesByYear(this.year)
       .subscribe((expensesData: ExpenseItem[]) => {
         this.expensesFromDB = expensesData
         this.initializeMonthsTotals();
         this.createChart();
-
       })
   }
 
   initializeMonthsTotals() {
     type StringKeyNumberValueObject = { [key: string]: number };
-
     const monthsTotalExpenses: StringKeyNumberValueObject = {}
     for (const expense of this.expensesFromDB) {
       if (monthsTotalExpenses[expense.month]) {

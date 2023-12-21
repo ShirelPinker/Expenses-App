@@ -94,5 +94,17 @@ div p {
 
 .total-amount{
   margin-top: 20px;
+}
 
+.month-options{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 22%;
+  margin: auto;
+}
+
+.month-arrow{
+  font-size: 18px;
+  cursor: pointer;
 }

@@ -2,7 +2,7 @@
 
   <fa-icon *ngIf="showSpinner" [icon]="faSpinner" class="fa-solid fa-spinner fa-spin-pulse"></fa-icon>
   <div *ngIf="!showSpinner" class="all-expenses-container">
-    <div>{{data.categoryName}}</div>
-    <app-expense-item *ngFor="let expense of categoryExpenses" [expense]="expense"></app-expense-item>
+    <div class="category-list-title">{{data.categoryName}}</div>
+    <app-expense-item  *ngFor="let expense of categoryExpenses" [expense]="expense"></app-expense-item>
   </div>
 </mat-dialog-content>

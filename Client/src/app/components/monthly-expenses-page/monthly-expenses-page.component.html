@@ -8,7 +8,7 @@
       <div class="header">
         <div class="sort-dropdown">
           <label>Sort By: </label>
-          <select class="sort-input-field" formControlName="selectedSortOrder" >
+          <select class="sort-input-field" formControlName="selectedSortOrder">
             <option value="alphabetical">a-z</option>
             <option value="amount">Amount</option>
           </select>
@@ -19,12 +19,17 @@
           <input class="input-field year-input-field" formControlName="year" type="number">
         </div>
       </div>
+      <div class="month-options">
+        <fa-icon class="month-arrow" (click)="onPreviousMonthClicked()" [icon]="faArrowLeft"></fa-icon>
 
-      <div class="month-dropdown">
-        <select class="input-field" formControlName="month">
-          <option *ngFor="let month of Object.keys(Months)" [ngValue]="month">{{ month }}</option>
-        </select>
+        <div class="month-dropdown">
+          <select class="input-field" formControlName="month">
+            <option *ngFor="let month of Object.keys(Months)" [ngValue]="month">{{ month }}</option>
+          </select>
+        </div>
+        <fa-icon class="month-arrow" (click)="onNextMonthClicked()" [icon]="faArrowRight"></fa-icon>
       </div>
+
 
     </form>
 
