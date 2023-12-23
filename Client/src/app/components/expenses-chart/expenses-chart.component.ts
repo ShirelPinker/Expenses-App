@@ -48,6 +48,7 @@ export class ExpenseChartComponent implements OnInit {
   }
 
   onYearChanged() {
+    this.chart.destroy()
     this.dataByMonth=[];
     this.expensesFromDB=[]
     this.initializeMonthlyExpensesChart()
