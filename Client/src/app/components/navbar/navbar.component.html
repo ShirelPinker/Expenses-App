@@ -1,4 +1,7 @@
 <nav class="navbar">
+  <div class="env-container" *ngIf="(isProduction$ | async) as envRes">is Production {{envRes.isProduction}}</div>
+
+
   <ul class="nav-list">
     <li class="nav-item">
       <a routerLink="/main" routerLinkActive="active">Home</a>

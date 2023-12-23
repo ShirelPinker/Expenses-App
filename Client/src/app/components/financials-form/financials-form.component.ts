@@ -9,8 +9,6 @@ import {FinancialActivitiesTypes} from "../../models/FinancialActivitiesTypesEnu
 interface financialsForm {
   type: FormControl<FinancialActivitiesTypes | null>;
   amount: FormControl<number | null>;
-  year: FormControl<number>;
-  month: FormControl<string>;
 }
 
 @Component({
@@ -19,22 +17,26 @@ interface financialsForm {
   styleUrls: ['./financials-form.component.css']
 })
 export class FinancialsFormComponent {
+  @Input() year: number | null = null;
+  @Input() month: string | null = null;
+
   financialsForm: FormGroup<financialsForm>;
 
   constructor(private formBuilder: FormBuilder, private financialActivitiesService: FinancialActivitiesService) {
     this.financialsForm = this.formBuilder.group<financialsForm>({
       type: new FormControl(null, [Validators.required]),
-      amount: new FormControl(null, [Validators.required]),
-      year: new FormControl(new Date().getFullYear(), {nonNullable: true, validators: [Validators.required]}),
-      month: new FormControl(Object.keys(Months)[new Date().getMonth() - 1], {
-        nonNullable: true,
-        validators: [Validators.required]
-      }),
+      amount: new FormControl(null, [Validators.required])
     });
   }
 
   submit() {
-    this.financialActivitiesService.addMonthFinancials(this.financialsForm.value as NewMonthFinancialActivities).subscribe(() => {
+    const newMonthFinancialActivities = {
+      year: this.year,
+      month: this.month,
+      amount: this.financialsForm.get('amount')!.value,
+      type: this.financialsForm.get('type')!.value
+    }
+    this.financialActivitiesService.addMonthFinancials(newMonthFinancialActivities as NewMonthFinancialActivities).subscribe(() => {
         this.financialsForm.controls.type.reset()
         this.financialsForm.controls.amount.reset()
 

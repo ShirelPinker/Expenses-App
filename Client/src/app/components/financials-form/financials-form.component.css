@@ -1,11 +1,17 @@
-.savings-form-title {
+.financials-form-title {
   font-size: 24px;
-  color: #947da9;
+  color: #596696;
   margin-top: 20px;
 }
 
 .form-fields-container {
-  margin-top: 38px ;
+  margin-top: 88px ;
+}
+
+.financials-form-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .form-input-container {
@@ -14,22 +20,10 @@
   margin-bottom: 20px;
 }
 
-.form-date-container{
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-
-}
-
-.main-input-label {
+.input-label {
   font-size: 16px;
   margin-bottom: 6px;
-  color: #7749a1;
-}
-
-.date-input-label{
-  margin-bottom: 6px;
-  color: #7749a1;
+  color: #596696;
 }
 
 .input-field {
@@ -49,14 +43,6 @@ select.input-field {
   background-position: right 8px center;
   background-size: 16px;
   cursor: pointer;
-}
-
-.month-input-field{
-  height: 21px;
-}
-
-.year-input-field{
-  width: 88px;
 }
 
 .submit-btn {

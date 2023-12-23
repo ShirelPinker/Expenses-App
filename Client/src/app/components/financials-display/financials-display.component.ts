@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-financials-display',
@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./financials-display.component.css']
 })
 export class FinancialsDisplayComponent {
-
+  @Input() year : number | null = null;
+  @Input() month: string  | null = null;
 }

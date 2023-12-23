@@ -33,3 +33,7 @@
 .active {
   border-bottom: 2px solid #fff;
 }
+
+.env-container{
+  color: white;
+}

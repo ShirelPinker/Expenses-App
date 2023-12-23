@@ -1,9 +1,21 @@
 <div class="financial-activities-page-container">
+  <form class="form-date-container" #financialForm="ngForm">
+    <div class="form-input-container">
+      <label class="input-label">Month </label>
+      <select class="input-field" name="selectedMonth" [(ngModel)]="selectedMonth" >
+        <option *ngFor="let month of Object.keys(Months)">{{ month }}</option>
+      </select>
+    </div>
 
+    <div class="form-input-container">
+      <label class="input-label">Year </label>
+      <input class="input-field" [(ngModel)]="selectedYear" name="selectedYear" type="number">
+    </div>
+  </form>
 
   <div class="form-and-display-container">
-    <app-financials-form class="financials-display-container"></app-financials-form>
-    <app-financials-display class="financials-form-container"></app-financials-display>
+    <app-financials-form [year]="selectedYear" [month]="selectedMonth" class="financials-form-container"></app-financials-form>
+    <app-financials-display [year]="selectedYear" [month]="selectedMonth" class="financials-display-container"></app-financials-display>
   </div>
 
 

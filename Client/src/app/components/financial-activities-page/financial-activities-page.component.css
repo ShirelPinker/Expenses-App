@@ -10,14 +10,11 @@
   border: 1px solid #ccc;
   font-family: sans-serif;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 45%;
-  height: 600px;
+  width: 38%;
+  height: 586px;
   margin: 20px auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   border-radius: 8px;
-  background-color: #eaeeff;
+  background-color: #8fc9ff4f;
   max-height: 1000px;
 }
 
@@ -30,4 +27,19 @@
   margin: 20px auto;
   display: flex;
   gap: 10px;
+}
+
+.input-label {
+  font-size: 20px;
+  margin-bottom: 6px;
+  color: #596696;
+}
+
+.input-field {
+  padding: 2px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 17px;
+  background: #ffffffa1;
+  width: 120px;
 }
