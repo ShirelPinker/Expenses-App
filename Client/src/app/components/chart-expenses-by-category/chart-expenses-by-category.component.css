@@ -1,0 +1,21 @@
+.chart-container{
+  width: 400px;
+  height: 300px;
+}
+.year-category-container{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+}
+
+.category-container{
+  width: 46%;
+}
+.year-container{
+  width: 40%;
+}
+
+.category-input{
+  width: 229px
+}

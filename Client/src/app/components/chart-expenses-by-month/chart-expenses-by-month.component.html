@@ -1,0 +1,8 @@
+<div class="chart-container">
+  <div class="year-container">
+    <label>Year </label>
+    <input type="number" [(ngModel)]="year" (input)="onYearChanged()" />
+  </div>
+  <canvas  id="ExpensesByMonthChart" >{{ chart }}</canvas>
+</div>
+

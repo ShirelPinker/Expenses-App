@@ -1,1 +1,40 @@
+.financials-display-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
 
+.financials-display-title {
+  font-size: 30px;
+  color: #596696;
+  margin: 20px auto;
+  width: 50%;
+
+}
+
+.balance-container{
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  color: #5F88A1;
+  font-size: 27px;
+}
+
+.balance-item {
+  font-size: 21px;
+  color: #1362c6;
+}
+
+.savings-container{
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  color:#00456f ;
+  font-size: 23px;
+  font-family: monospace;
+
+}

@@ -1,8 +1,8 @@
 enum FinancialActivitiesTypes {
-  Income = 'income',
-  Deposit = 'deposit',
-  Investment = 'investment',
-  Crypto = 'crypto'
+  Income = 'Income',
+  Deposit = 'Deposit',
+  Investment = 'Investment',
+  Crypto = 'Crypto'
 }
 
 export { FinancialActivitiesTypes };

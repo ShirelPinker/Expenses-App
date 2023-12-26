@@ -1,16 +1,15 @@
 import {Component, OnInit} from '@angular/core';
-import {Months} from "../../models/MonthsEnum";
-import {ExpensesService} from "../../services/expenses.service";
 import {ExpenseItem} from "../../models/ExpenseItem";
+import {ExpensesService} from "../../services/expenses.service";
+import {Months} from "../../models/MonthsEnum";
 import {Chart} from "chart.js";
 
 @Component({
-  selector: 'app-expenses-chart',
-  templateUrl: './expenses-chart.component.html',
-  styleUrls: ['./expenses-chart.component.css']
+  selector: 'app-chart-expenses-by-month',
+  templateUrl: './chart-expenses-by-month.component.html',
+  styleUrls: ['./chart-expenses-by-month.component.css']
 })
-
-export class ExpenseChartComponent implements OnInit {
+export class ChartExpensesByMonthComponent implements OnInit {
   expensesFromDB: ExpenseItem[] = [];
   public chart: any;
   dataByMonth: number[] = []
@@ -49,29 +48,46 @@ export class ExpenseChartComponent implements OnInit {
 
   onYearChanged() {
     this.chart.destroy()
-    this.dataByMonth=[];
-    this.expensesFromDB=[]
+    this.dataByMonth = [];
+    this.expensesFromDB = []
     this.initializeMonthlyExpensesChart()
   }
 
   createChart() {
-
-    this.chart = new Chart("MyChart", {
+    this.chart = new Chart("ExpensesByMonthChart", {
       type: 'bar',
-
       data: {
         labels: Object.keys(Months),
         datasets: [
           {
-            label: "Monthly Expenses",
             data: this.dataByMonth,
             backgroundColor: 'blue'
           },
-
         ]
       },
       options: {
-        aspectRatio: 2.5
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          x: {
+            beginAtZero: true
+          },
+          y: {
+            beginAtZero: true,
+          }
+        },
+        plugins: {
+          legend: {
+            display: false,
+          },
+          title: {
+            display: true,
+            text: 'Total expenses by Month',
+            font: {
+              size: 16
+            }
+          }
+        },
       }
 
     });

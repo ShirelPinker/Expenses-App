@@ -8,7 +8,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { AddMonthlyExpensesFormPageComponent } from './components/add-monthly-expenses-form-page/add-monthly-expenses-form-page.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { ExpenseChartComponent } from './components/expenses-chart/expenses-chart.component';
+import { ChartsPageComponent } from './components/charts-page/charts-page.component';
 import { NgChartsModule } from 'ng2-charts';
 import { CategoryExpensesComponent } from './components/category-expenses/category-expenses.component';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -17,6 +17,8 @@ import { ExpenseItemComponent } from './components/expense-item/expense-item.com
 import { FinancialActivitiesPageComponent } from './components/financial-activities-page/financial-activities-page.component';
 import { FinancialsDisplayComponent } from './components/financials-display/financials-display.component';
 import { FinancialsFormComponent } from './components/financials-form/financials-form.component';
+import { ChartExpensesByMonthComponent } from './components/chart-expenses-by-month/chart-expenses-by-month.component';
+import { ChartExpensesByCategoryComponent } from './components/chart-expenses-by-category/chart-expenses-by-category.component';
 
 
 @NgModule({
@@ -25,12 +27,14 @@ import { FinancialsFormComponent } from './components/financials-form/financials
     MonthlyExpensesPageComponent,
     AddMonthlyExpensesFormPageComponent,
     NavbarComponent,
-    ExpenseChartComponent,
+    ChartsPageComponent,
     CategoryExpensesComponent,
     ExpenseItemComponent,
     FinancialActivitiesPageComponent,
     FinancialsDisplayComponent,
-    FinancialsFormComponent
+    FinancialsFormComponent,
+    ChartExpensesByMonthComponent,
+    ChartExpensesByCategoryComponent
   ],
   imports: [
     BrowserModule,

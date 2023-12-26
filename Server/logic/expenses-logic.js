@@ -1,6 +1,4 @@
 const expensesDal = require("../dal/expenses-dal");
-const categoriesDal = require("../dal/categories-dal");
-
 
 async function getExpensesByMonth(month) {
   return await expensesDal.getExpensesByMonth(month);

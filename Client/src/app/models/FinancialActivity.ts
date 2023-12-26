@@ -1,6 +1,6 @@
 import {FinancialActivitiesTypes} from "./FinancialActivitiesTypesEnum";
 
-export interface NewMonthFinancialActivities {
+export interface FinancialActivity {
   year: number,
   month: string,
   amount: number,

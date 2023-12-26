@@ -1,0 +1,17 @@
+<div class="chart-container" *ngIf="categories">
+  <div class="year-category-container">
+    <div class="category-container">
+      <label>Year </label>
+      <input type="number" [(ngModel)]="year" (input)="onYearChanged()"/>
+    </div>
+    <div class="category-container">
+      <label class="category-input-label">Category </label>
+      <select [(ngModel)]="selectedCategory" class="category-input" (ngModelChange)="onCategoryChange()">
+        <option [ngValue]="null" disabled>Select Category</option>
+        <option *ngFor="let category of categories" [ngValue]="category.name">{{category.name}}</option>
+      </select>
+    </div>
+  </div>
+
+  <canvas id="ExpensesByCategoryChart">{{ chart }}</canvas>
+</div>

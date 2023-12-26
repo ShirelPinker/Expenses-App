@@ -1,9 +1,10 @@
 import {Component, Input} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {FinancialActivitiesService} from "../../services/financialActivities.service";
-import {NewMonthFinancialActivities} from "../../models/NewMonthFinancialActivities";
+import {FinancialActivity} from "../../models/FinancialActivity";
 import {Months} from "../../models/MonthsEnum";
 import {FinancialActivitiesTypes} from "../../models/FinancialActivitiesTypesEnum";
+import {FinancialActivitiesChangesService} from "../../services/financial-activities-changes.service";
 
 
 interface financialsForm {
@@ -22,7 +23,8 @@ export class FinancialsFormComponent {
 
   financialsForm: FormGroup<financialsForm>;
 
-  constructor(private formBuilder: FormBuilder, private financialActivitiesService: FinancialActivitiesService) {
+  constructor(private formBuilder: FormBuilder, private financialActivitiesService: FinancialActivitiesService,
+              private financialActivitiesChangesService: FinancialActivitiesChangesService) {
     this.financialsForm = this.formBuilder.group<financialsForm>({
       type: new FormControl(null, [Validators.required]),
       amount: new FormControl(null, [Validators.required])
@@ -36,10 +38,10 @@ export class FinancialsFormComponent {
       amount: this.financialsForm.get('amount')!.value,
       type: this.financialsForm.get('type')!.value
     }
-    this.financialActivitiesService.addMonthFinancials(newMonthFinancialActivities as NewMonthFinancialActivities).subscribe(() => {
+    this.financialActivitiesService.addMonthFinancials(newMonthFinancialActivities as FinancialActivity).subscribe(() => {
         this.financialsForm.controls.type.reset()
         this.financialsForm.controls.amount.reset()
-
+        this.financialActivitiesChangesService.onFinancialActivityAdded(newMonthFinancialActivities)
 
       }
     )
