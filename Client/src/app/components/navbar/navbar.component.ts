@@ -16,4 +16,5 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
    this.isProduction$ = this.envService.getEnvironment()
   }
+
 }

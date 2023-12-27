@@ -1,0 +1,31 @@
+<div class="admin-page-container">
+
+  <div class="manage-categories-title">Manage Your App</div>
+
+  <div class="manage-container" *ngIf="(categories$ | async) as categories">
+
+    <div class="manage-item">
+      <div class="category-action-title">Add new Category</div>
+      <div class="add-category-input-container">
+        <input class="add-category-input-field" [(ngModel)]="newCategoryName" type="string">
+        <button class="add-category-btn" (click)="onAddCategoryClicked()" [disabled]="!newCategoryName">Submit</button>
+      </div>
+    </div>
+
+    <div class="manage-item">
+      <div class="category-action-title">Delete Category</div>
+      <div class="delete-category-input-container">
+        <select class="category-dropdown-input" [(ngModel)]="selectedCategory">
+          <option [ngValue]="null" disabled>Select Category</option>
+          <option *ngFor="let category of categories" [ngValue]="category">{{category.name}}</option>
+        </select>
+        <div>
+          <fa-icon [icon]="faTrash" (click)="onDeleteCategoryClicked()" class="fa-solid fa-trash delete-btn"></fa-icon>
+        </div>
+      </div>
+    </div>
+
+    <div class="manage-item">
+    <div class="category-action-title">Whats Next?</div>
+
+</div>

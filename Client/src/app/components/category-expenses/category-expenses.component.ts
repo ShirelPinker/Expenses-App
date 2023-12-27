@@ -1,9 +1,8 @@
-import {Component, Inject, Input, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {ExpensesService} from "../../services/expenses.service";
 import {ExpenseItem} from "../../models/ExpenseItem";
-import {faSpinner, faTrash, faPencil} from "@fortawesome/free-solid-svg-icons";
-import {MAT_DIALOG_DATA, MatDialogModule} from "@angular/material/dialog";
-import {log10} from "chart.js/helpers";
+import {faSpinner} from "@fortawesome/free-solid-svg-icons";
+import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {ExpenseUserChangesService} from "../../services/expense-user-changes.service";
 
 @Component({

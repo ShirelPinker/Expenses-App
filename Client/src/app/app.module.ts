@@ -19,6 +19,7 @@ import { FinancialsDisplayComponent } from './components/financials-display/fina
 import { FinancialsFormComponent } from './components/financials-form/financials-form.component';
 import { ChartExpensesByMonthComponent } from './components/chart-expenses-by-month/chart-expenses-by-month.component';
 import { ChartExpensesByCategoryComponent } from './components/chart-expenses-by-category/chart-expenses-by-category.component';
+import { AdminPageComponent } from './components/admin-page/admin-page.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { ChartExpensesByCategoryComponent } from './components/chart-expenses-by
     FinancialsDisplayComponent,
     FinancialsFormComponent,
     ChartExpensesByMonthComponent,
-    ChartExpensesByCategoryComponent
+    ChartExpensesByCategoryComponent,
+    AdminPageComponent
   ],
   imports: [
     BrowserModule,
