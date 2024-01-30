@@ -113,24 +113,26 @@ export class MonthlyExpensesPageComponent implements OnInit {
 
   onPreviousMonthClicked() {
     const currentMonth = this.showExpensesForm.get('month')!.value;
+    const currentYear = this.showExpensesForm.get('year')!.value;
     const currentMonthIndex = this.monthsIndexed.indexOf(currentMonth)
-    let previousMonth
     if (currentMonthIndex == 0) {
-      return
+      this.showExpensesForm.get('month')!.setValue(Months.December);
+      this.showExpensesForm.get('year')!.setValue(currentYear - 1)
     } else {
-      previousMonth = this.monthsIndexed[currentMonthIndex - 1];
+      const previousMonth = this.monthsIndexed[currentMonthIndex - 1];
       this.showExpensesForm.get('month')!.setValue(previousMonth);
     }
   }
 
   onNextMonthClicked() {
     const currentMonth = this.showExpensesForm.get('month')!.value;
+    const currentYear = this.showExpensesForm.get('year')!.value;
     const currentMonthIndex = this.monthsIndexed.indexOf(currentMonth)
-    let nextMonth
     if (currentMonthIndex == 11) {
-      return
+      this.showExpensesForm.get('month')!.setValue(Months.January);
+      this.showExpensesForm.get('year')!.setValue(currentYear + 1)
     } else {
-      nextMonth = this.monthsIndexed[currentMonthIndex + 1];
+      const nextMonth = this.monthsIndexed[currentMonthIndex + 1];
       this.showExpensesForm.get('month')!.setValue(nextMonth);
     }
   }
@@ -147,11 +149,28 @@ export class MonthlyExpensesPageComponent implements OnInit {
   }
 
   setForm() {
+    const {year, month} = this.initializeDate()
     this.showExpensesForm = this.formBuilder.group({
-      year: new Date().getFullYear(),
-      month: Object.keys(Months)[new Date().getMonth() - 1],
+      year: year,
+      month: month,
       selectedSortOrder: 'amount'
     });
+  }
+
+  initializeDate() {
+    const currentMonth = Object.keys(Months)[new Date().getMonth()]
+    if (currentMonth === Months.January) {
+      return {
+        year: new Date().getFullYear() - 1,
+        month: Months.December
+      }
+
+    } else {
+      return {
+        year: new Date().getFullYear(),
+        month: Object.keys(Months)[new Date().getMonth() - 1]
+      }
+    }
   }
 
   initializeExpensesByCategories() {

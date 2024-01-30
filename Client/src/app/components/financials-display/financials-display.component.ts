@@ -4,6 +4,7 @@ import {FinancialActivitiesService} from "../../services/financialActivities.ser
 import {FinancialActivitiesTypes} from "../../models/FinancialActivitiesTypesEnum";
 import {FinancialActivitiesChangesService} from "../../services/financial-activities-changes.service";
 import {FinancialActivity} from "../../models/FinancialActivity";
+import {tap} from "rxjs";
 
 @Component({
   selector: 'app-financials-display',
@@ -19,10 +20,10 @@ export class FinancialsDisplayComponent implements OnChanges, OnInit {
   totalInvestment: number;
   totalCrypto: number;
   balance: number;
+  isShow: boolean = false;
 
   constructor(private expensesService: ExpensesService, private financialActivitiesService: FinancialActivitiesService,
               private financialActivitiesChangesService: FinancialActivitiesChangesService) {
-
   }
 
   ngOnInit() {
@@ -32,22 +33,24 @@ export class FinancialsDisplayComponent implements OnChanges, OnInit {
   }
 
   ngOnChanges() {
+    this.isShow = false;
     this.initializeExpensesTotal()
-    this.initializeFinancialActivities()
+    // this.initializeFinancialActivities()
   }
 
   initializeExpensesTotal() {
     this.expensesTotal = 0;
-    this.expensesService.getExpensesByMonthAndYear(this.month, this.year).subscribe(
-      (expenses) => {
-        for (let expense of expenses) {
-          this.expensesTotal += expense.amount
-        }
+    this.expensesService.getExpensesByMonthAndYear(this.month, this.year).pipe(tap((expenses) => {
+      for (let expense of expenses) {
+        this.expensesTotal += expense.amount
       }
-    );
-
+    })).subscribe(
+      () => {
+        this.initializeFinancialActivities()
+        this.isShow = true
+      }
+    )
   }
-
 
   initializeFinancialActivities() {
     this.totalIncome = 0;

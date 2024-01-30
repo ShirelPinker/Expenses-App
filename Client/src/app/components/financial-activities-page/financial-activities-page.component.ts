@@ -11,10 +11,26 @@ export class FinancialActivitiesPageComponent {
   selectedYear: number;
 
   constructor() {
-    this.selectedYear = new Date().getFullYear();
-    this.selectedMonth = Object.keys(Months)[new Date().getMonth() - 1]
+    const {year, month} = this.initializeDate()
+    this.selectedYear = year;
+    this.selectedMonth = month
   }
 
+  initializeDate() {
+    const currentMonth = Object.keys(Months)[new Date().getMonth()]
+    if (currentMonth === Months.January) {
+      return {
+        year: new Date().getFullYear() - 1,
+        month: Months.December
+      }
+
+    } else {
+      return {
+        year: new Date().getFullYear(),
+        month: Object.keys(Months)[new Date().getMonth() - 1]
+      }
+    }
+  }
   protected readonly Object = Object;
   protected readonly Months = Months;
 }

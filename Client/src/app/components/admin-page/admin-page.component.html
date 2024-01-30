@@ -1,21 +1,21 @@
 <div class="admin-page-container">
 
-  <div class="manage-categories-title">Manage Your App</div>
+  <div class="admin-page-title">Manage Your App</div>
 
-  <div class="manage-container" *ngIf="(categories$ | async) as categories">
+  <div class="manage-categories-container" *ngIf="(categories$ | async) as categories">
 
-    <div class="manage-item">
-      <div class="category-action-title">Add new Category</div>
-      <div class="add-category-input-container">
-        <input class="add-category-input-field" [(ngModel)]="newCategoryName" type="string">
-        <button class="add-category-btn" (click)="onAddCategoryClicked()" [disabled]="!newCategoryName">Submit</button>
+    <div class="manage-categories-item">
+      <div class="manage-categories-title">Add new Category</div>
+      <div class="category-input-container">
+        <input class="category-input-field" [(ngModel)]="newCategoryName" type="string">
+        <button class="submit-btn" (click)="onAddCategoryClicked()" [disabled]="!newCategoryName">Submit</button>
       </div>
     </div>
 
-    <div class="manage-item">
-      <div class="category-action-title">Delete Category</div>
-      <div class="delete-category-input-container">
-        <select class="category-dropdown-input" [(ngModel)]="selectedCategory">
+    <div class="manage-categories-item">
+      <div class="manage-categories-title">Delete Category</div>
+      <div class="delete-category-container">
+        <select class="categories-dropdown" [(ngModel)]="selectedCategoryToDelete">
           <option [ngValue]="null" disabled>Select Category</option>
           <option *ngFor="let category of categories" [ngValue]="category">{{category.name}}</option>
         </select>
@@ -25,7 +25,23 @@
       </div>
     </div>
 
-    <div class="manage-item">
-    <div class="category-action-title">Whats Next?</div>
+    <div  class="manage-categories-item">
+      <div class="manage-categories-title">Edit Category</div>
+      <form class="edit-category-form" *ngIf="(categories$ | async) as categories" [formGroup]="editCategoryForm">
+        <div>
+          <select class="categories-dropdown" formControlName="selectedCategoryToEdit">
+            <option [ngValue]="null" disabled>Select Category</option>
+            <option *ngFor="let category of categories" [ngValue]="category">{{category.name}}</option>
+          </select>
+        </div>
 
-</div>
+        <div class="category-input-container">
+          <input class="category-input-field" formControlName="categoryToEditInput">
+          <button class="submit-btn" (click)="onEditCategoryClicked()">Submit</button>
+        </div>
+      </form>
+
+
+    </div>
+
+  </div>

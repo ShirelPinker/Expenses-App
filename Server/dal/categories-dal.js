@@ -14,8 +14,14 @@ async function addCategory(newCategory) {
   await connection.executeWithParameters(sql, parameters);
 }
 
+async function editCategory(updatedCategory) {
+  const sql = `UPDATE Categories SET name = ? WHERE id = ?`;
+  const parameters = [updatedCategory.name, updatedCategory.id];
+  await connection.executeWithParameters(sql, parameters);
+}
 module.exports = {
   getAllCategories,
   deleteCategory,
-  addCategory
+  addCategory,
+  editCategory
 };

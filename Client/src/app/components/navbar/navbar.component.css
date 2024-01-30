@@ -26,7 +26,7 @@
 }
 
 .nav-item a:hover {
-  cursor: pointer ;
+  cursor: pointer;
 
 }
 
@@ -34,6 +34,14 @@
   border-bottom: 2px solid #fff;
 }
 
-.env-container{
-  color: white;
+.env-container {
+  margin-left: 10px;
+}
+
+.toggle-icon {
+  font-size: 22px;
+}
+
+.toggle-on{
+  color: #5fa070;
 }

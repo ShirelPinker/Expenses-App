@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, ElementRef, Input} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {FinancialActivitiesService} from "../../services/financialActivities.service";
 import {FinancialActivity} from "../../models/FinancialActivity";
@@ -23,10 +23,12 @@ export class FinancialsFormComponent {
 
   financialsForm: FormGroup<financialsForm>;
 
-  constructor(private formBuilder: FormBuilder, private financialActivitiesService: FinancialActivitiesService,
-              private financialActivitiesChangesService: FinancialActivitiesChangesService) {
+  constructor(private formBuilder: FormBuilder,
+              private financialActivitiesService: FinancialActivitiesService,
+              private financialActivitiesChangesService: FinancialActivitiesChangesService,
+              private elementRef: ElementRef) {
     this.financialsForm = this.formBuilder.group<financialsForm>({
-      type: new FormControl(null, [Validators.required]),
+      type: new FormControl(FinancialActivitiesTypes.Income, [Validators.required]),
       amount: new FormControl(null, [Validators.required])
     });
   }
@@ -42,9 +44,15 @@ export class FinancialsFormComponent {
         this.financialsForm.controls.type.reset()
         this.financialsForm.controls.amount.reset()
         this.financialActivitiesChangesService.onFinancialActivityAdded(newMonthFinancialActivities)
+        this.focusOnFinancialActivity();
 
       }
     )
+  }
+
+  focusOnFinancialActivity() {
+    const financialActivityDropdown = this.elementRef.nativeElement.querySelector('#financial-activity-dropdown');
+    financialActivityDropdown.focus()
   }
 
   protected readonly Months = Months;

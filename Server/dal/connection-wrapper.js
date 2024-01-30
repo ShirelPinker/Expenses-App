@@ -1,18 +1,10 @@
 const mysql = require("mysql2");
 
-// const connection = mysql.createConnection({
-//   host: "localhost", // Docker container is running on localhost
-//   port: 3307,        // Specify the port mapped to the container
-//   user: "root",      // User with root privileges
-//   password: "1234",  // Password set in your Docker command
-//   database: "expenses_db" // Replace with your database name
-// })
-
 const connection = mysql.createConnection({
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
   user: process.env.DB_USERNAME,
-  password:process.env.DB_PASSWORD,
+  password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME
 })
 
@@ -51,7 +43,21 @@ function executeWithParameters(sql, parameters) {
   });
 }
 
+function closeConnection() {
+  if (connection) {
+    connection.end(err => {
+      if (err) {
+        console.log("Failed to close connection: " + err);
+      } else {
+        console.log("Connection closed");
+      }
+    });
+  }
+}
+
 module.exports = {
   execute,
-  executeWithParameters
+  executeWithParameters,
+  closeConnection,
+  connection
 };

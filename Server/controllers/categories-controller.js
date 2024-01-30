@@ -1,6 +1,5 @@
 const categoriesLogic = require("../logic/categories-logic");
 const express = require("express");
-const expensesLogic = require("../logic/expenses-logic");
 const router = express.Router();
 
 router.get("/", async (request, response, next) => {
@@ -17,6 +16,17 @@ router.post("/", async (request, response, next) => {
 
   try {
     await categoriesLogic.addCategory(newCategory);
+    response.json();
+  } catch (e) {
+    next(e)
+  }
+});
+
+router.put("/", async (request, response, next) => {
+  const updatedCategory = request.body;
+
+  try {
+    await categoriesLogic.editCategory(updatedCategory);
     response.json();
   } catch (e) {
     next(e)

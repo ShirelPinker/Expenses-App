@@ -35,17 +35,31 @@ export class AddMonthlyExpensesFormPageComponent implements AfterViewInit {
     private formBuilder: FormBuilder,
     private elementRef: ElementRef
   ) {
+    const {year, month} = this.initializeDate()
     this.expenseForm = this.formBuilder.group<ExpenseForm>({
       categoryId: new FormControl(null, [Validators.required]),
       amount: new FormControl(null, [Validators.required]),
       description: new FormControl(),
-      year: new FormControl(new Date().getFullYear(), {nonNullable: true, validators: [Validators.required]}),
-      month: new FormControl(Object.keys(Months)[new Date().getMonth()-1], {
-        nonNullable: true,
-        validators: [Validators.required]
-      }),
+      year: new FormControl(year, {nonNullable: true, validators: [Validators.required]}),
+      month: new FormControl(month, {nonNullable: true, validators: [Validators.required]}),
     });
     this.categories$ = this.categoriesService.getCategories()
+  }
+
+  initializeDate() {
+    const currentMonth = Object.keys(Months)[new Date().getMonth()]
+    if (currentMonth === Months.January) {
+      return {
+        year: new Date().getFullYear() - 1,
+        month: Months.December
+      }
+
+    } else {
+      return {
+        year: new Date().getFullYear(),
+        month: Object.keys(Months)[new Date().getMonth() - 1]
+      }
+    }
   }
 
   ngAfterViewInit(): void {

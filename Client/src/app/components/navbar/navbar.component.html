@@ -1,6 +1,8 @@
 <nav class="navbar">
-  <div class="env-container" *ngIf="(isProduction$ | async) as envRes">is Production {{envRes.isProduction}}</div>
-
+  <div class="env-container" *ngIf="(isProduction$ | async) as envRes">
+    <fa-icon *ngIf="envRes.isProduction==true" [icon]="faToggleOn" class="fa-regular fa-toggle-on toggle-icon toggle-on"></fa-icon>
+    <fa-icon *ngIf="envRes.isProduction==false" [icon]="faToggleOff" class="fa-solid fa-toggle-off toggle-icon"></fa-icon>
+ </div>
 
   <ul class="nav-list">
     <li class="nav-item">

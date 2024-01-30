@@ -5,7 +5,7 @@
 
     <div class="type-dropdown form-input-container">
       <label class="input-label">Financial activity:</label>
-      <select class="input-field" formControlName="type">
+      <select  id="financial-activity-dropdown" class="input-field" formControlName="type">
         <option *ngFor="let type of Object.keys(FinancialActivitiesTypes)" [ngValue]="type">{{ type }}</option>
       </select>
     </div>

@@ -13,7 +13,7 @@ export class ChartExpensesByMonthComponent implements OnInit {
   expensesFromDB: ExpenseItem[] = [];
   public chart: any;
   dataByMonth: number[] = []
-  year: number = new Date().getFullYear()
+  year: number = this.initializeYear()
 
   constructor(private expensesService: ExpensesService) {
   }
@@ -21,6 +21,15 @@ export class ChartExpensesByMonthComponent implements OnInit {
   ngOnInit() {
     this.initializeMonthlyExpensesChart()
   }
+
+  initializeYear() {
+    const currentMonth = Object.keys(Months)[new Date().getMonth()]
+    if (currentMonth === Months.January) {
+      return new Date().getFullYear() - 1
+    } else {
+      return new Date().getFullYear()
+      }
+    }
 
   initializeMonthlyExpensesChart() {
     this.expensesService.getExpensesByYear(this.year)

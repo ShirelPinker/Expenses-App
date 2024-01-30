@@ -4,7 +4,7 @@ const cors = require("cors");
 const expensesController = require("./controllers/expenses-controller");
 const categoriesController = require("./controllers/categories-controller");
 const financialActivitiesController = require("./controllers/financial-activities-controller");
-
+const envController = require("./controllers/env-controller")
 
 const app = express();
 app.use(cors({
@@ -17,6 +17,7 @@ app.use(express.json());
 app.use("/financialActivities", financialActivitiesController);
 app.use("/expenses", expensesController);
 app.use("/categories", categoriesController);
+// app.use("/env", envController);
 
 app.get("/env", async (request, response, next) => {
   response.json({isProduction: process.env.NODE_ENV === "production"})
@@ -28,10 +29,10 @@ app.listen(3001, () => {
 
 function loadEnvParams() {
   if (process.env.NODE_ENV === "production") {
-    console.log('connecting to prod DB!')
+    // console.log('connecting to prod DB!')
     require('dotenv').config({path: process.cwd() + '/environmentVariables/prod.env'})
   } else {
-    console.log('connecting to dev DB!')
+    // console.log('connecting to dev DB!')
     require('dotenv').config({path: process.cwd() + '/environmentVariables/dev.env'})
   }
 }

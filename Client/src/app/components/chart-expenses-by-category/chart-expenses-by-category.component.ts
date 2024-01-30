@@ -13,7 +13,7 @@ import {Months} from "../../models/MonthsEnum";
   styleUrls: ['./chart-expenses-by-category.component.css']
 })
 export class ChartExpensesByCategoryComponent implements OnInit {
-  year: number = new Date().getFullYear()
+  year: number = this.initializeYear()
   expensesFromDB: ExpenseItem[] = [];
   public chart: any;
   categories: Category[] = [];
@@ -33,6 +33,15 @@ export class ChartExpensesByCategoryComponent implements OnInit {
       this.expensesFromDB = expensesData
       this.initializeChart();
     });
+  }
+
+  initializeYear() {
+    const currentMonth = Object.keys(Months)[new Date().getMonth()]
+    if (currentMonth === Months.January) {
+      return new Date().getFullYear() - 1
+    } else {
+      return new Date().getFullYear()
+    }
   }
 
   initializeChart() {

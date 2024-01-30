@@ -12,9 +12,14 @@ async function addCategory(newCategory){
   return await categoriesDal.addCategory(newCategory);
 }
 
+async function editCategory(updatedCategory){
+  return await categoriesDal.editCategory(updatedCategory);
+}
+
 module.exports = {
   getAllCategories,
   deleteCategory,
-  addCategory
+  addCategory,
+  editCategory
 
 };
